@@ -1,0 +1,21 @@
+.kusto__title {
+    font-size: 42px;
+    width: 335px;
+    line-height: 48px;
+    margin-top: 22px;
+    margin-bottom: 0px;
+  }
+  
+  @media only screen and (max-width: 425px) {
+    .kusto__title {
+      margin-top: 25px;
+      margin-left: 15px;
+      margin-right: auto;
+      margin-top: 0;
+      margin-bottom: 0;
+      font-size: 27px;
+      line-height: 32.68px;
+      max-width: 288px;
+    }
+  }
+  

@@ -1,9 +1,6 @@
-
-
 .header__logo {
   padding-top: 38px;
 }
-
 
 @media only screen and (max-width: 425px) {
   .header__logo {
@@ -12,7 +9,6 @@
     width: 105px;
   }
 }
-
 
 .header__solid {
   border-top: 1px solid #545454;
@@ -163,18 +159,27 @@
     padding-top: 45px;
     grid-template-columns: repeat(1, 284fr 284fr 284fr);
     gap: 17px;
-    
   }
    
+
+
+  @media only screen and (max-width: 425px) {
+    .cards {
+      padding-top: 36px;
+      grid-template-columns: repeat(1, 288px);
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 0;
+      margin-bottom: 0;
+      gap: 16px;
+    }
+  }
   .cards__corners {
     border-radius: 3%;
 
   }
   
 
-  
-  
-  
   .cards__item {
     max-width: 100%;
   }
@@ -201,7 +206,7 @@
   }
 
 
-  .card {
+  .cards__cell {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -214,17 +219,7 @@
   }
 
 
-    @media only screen and (max-width: 425px) {
-    .cards {
-      padding-top: 36px;
-      grid-template-columns: repeat(1, 288px);
-      margin-left: auto;
-      margin-right: auto;
-      margin-top: 0;
-      margin-bottom: 0;
-      gap: 16px;
-    }
-  }
+ 
 
   .cards__social-icon {
     padding-right: 22px;
@@ -278,4 +273,3 @@
     padding-right: 34px;
 }
 
-.footer__copyright {

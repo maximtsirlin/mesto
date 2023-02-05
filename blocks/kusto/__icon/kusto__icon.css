@@ -1,0 +1,11 @@
+.kusto__icon {
+  padding-left: 22px;
+  }
+
+
+  @media only screen and (max-width: 425px) {
+    .kusto__icon {
+      padding-left: 15px;
+      max-width: 19px;
+    }
+  }

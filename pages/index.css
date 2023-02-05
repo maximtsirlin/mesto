@@ -1,0 +1,32 @@
+@import url(../vendor/normalize.css);
+@import url(../blocks/root/root.css);
+@import url(../vendor/fonts/fonts.css);
+
+@import url(../blocks/header/__logo/header__logo.css);
+@import url(../blocks/header/__solid/header__solid.css);
+
+@import url(../blocks/kusto/kusto.css);
+@import url(../blocks/kusto/__item/kusto__item.css);
+@import url(../blocks/kusto/__image/kusto__image.css);
+@import url(../blocks/kusto/__title/kusto__title.css);
+@import url(../blocks/kusto/__icon/kusto__icon.css);
+@import url(../blocks/kusto/__button/kusto__button.css);
+@import url(../blocks/kusto/__description/kusto__description.css);
+
+@import url(../blocks/cards/__cell/cards__cell.css);
+@import url(../blocks/cards/__item/cards__item.css);
+@import url(../blocks/cards/__description/cards__description.css);
+@import url(../blocks/cards/__social-icon/cards__social-icon.css);
+@import url(../blocks/cards/cards.css);
+@import url(../blocks/cards/__button/cards__button.css);
+@import url(../blocks/cards/__form/cards__form.css);
+
+@import url(../blocks/footer/__copyright/footer__copyright.css);
+@import url(../blocks/footer/footer.css);
+
+@import url(../blocks/popup/popup.css);
+@import url(../blocks/popup/__close/popup__close.css);
+@import url(../blocks/popup/__container/popup__container.css);
+@import url(../blocks/popup/__header/popup__header.css);
+@import url(../blocks/popup/__input-name/popup__input-name.css);
+@import url(../blocks/popup/__input-todo/popup__input-todo.css);
