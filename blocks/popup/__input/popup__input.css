@@ -1,0 +1,30 @@
+.popup__input {
+    margin-top: 22px;
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    padding: 9px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    width: 97%;
+}
+
+
+.popup__input:first-child {
+    margin-top: 40px;
+}
+
+
+@media only screen and (max-width: 425px) {
+    .popup__input {
+        margin-top: 20px;
+        width: 92%;
+    }
+
+    .popup__input:first-child {
+        margin-top: 32px;
+    }
+
+}
+
+ 

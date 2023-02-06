@@ -20,11 +20,12 @@
       <div class="kusto__item"><img src="./images/image.jpg" alt="Жак-Ив Кусто аватар" class="kusto__image">
       </div>
       <div class="kusto__item">
-        <p class="kusto__title">Жак-Ив Кусто<img src="./images/icon.png" class="kusto__icon"></p>
+        <p class="kusto__title">Жак-Ив Кусто <button class="kusto__icon  kusto__edit-button"></button></p>
+       
         <p class="kusto__description">Исследователь океана</p>
       </div>
       <div class="kusto__item">
-        <div class="kusto__button"><img src="./images/Plus.png"></div>
+        <button class="kusto__button"><img src="./images/Plus.png"></button>
       </div>
     </div>
 
@@ -85,13 +86,16 @@
       <div class="popup__container">
         <button class="popup__close"></button>
         <h2 class="popup__header">Редактировать профиль</h2>
-        <input class="popup__input-name"></input>
-        <input class="popup__input-todo"></input>
+        <fieldset class="popup__input-container">
+          <input type="text" value="Жак-Ив Кусто" class="popup__input"></input>
+          <input type="text" value="Исследователь океана" class="popup__input"></input>
+        </fieldset>
+        <button class="popup__save">Сохранить</button>
       </div>
     </section>
 
-    <script src="./pages/index.js"></script>
-    
+    <script src="./scripts/index.js"></script>
+
   </div>
 </body>
 

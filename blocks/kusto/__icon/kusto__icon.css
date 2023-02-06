@@ -1,11 +1,26 @@
 .kusto__icon {
-  padding-left: 22px;
-  }
+  width: 24px;
+  height: 24px;
+  top: -41px;
+  right: -39px;
+  background-color: transparent;
+  background-image: url(../../../images/pencil.svg);
+  background-size: 14px;
+  background-position: center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  border: 2px solid rgb(255 255 255);
+}
 
+.kusto__icon:hover {
+  opacity: 0.6;
+}
 
-  @media only screen and (max-width: 425px) {
-    .kusto__icon {
-      padding-left: 15px;
-      max-width: 19px;
-    }
+@media only screen and (max-width: 425px) {
+  .kusto__icon {
+    padding-left: 15px;
+    max-width: 19px;
   }
+}
+
+x
