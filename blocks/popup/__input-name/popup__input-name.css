@@ -1,4 +1,4 @@
-.popup__input {
+.popup__input-name {
     margin-top: 22px;
     border: none;
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
@@ -10,18 +10,18 @@
 }
 
 
-.popup__input:first-child {
+.popup__input-name:first-child {
     margin-top: 40px;
 }
 
 
 @media only screen and (max-width: 425px) {
-    .popup__input {
+    .popup__input-name {
         margin-top: 20px;
         width: 92%;
     }
 
-    .popup__input:first-child {
+    .popup__input-name:first-child {
         margin-top: 32px;
     }
 

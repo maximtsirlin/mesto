@@ -27,5 +27,7 @@
     .kusto__button {
       max-width: 287px;
       margin-top: 6px;
+      margin-right: auto;
+      margin-left: auto;
     }
   }
