@@ -1,17 +1,27 @@
-# Проект: Место
+Mesto
 
-### Обзор
+Страница с возмо
 
-* Figma
-* Картинки
 
-**Figma**
+Это адаптивная страница о путешествии по России на поездах. С возможностью добавления 
 
-* [Ссылка на макет в Figma](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1)
 
-**Картинки**
+Я использовал базовые технологии, это html/css, также я добавил вложенную методологию БЭМ и медиа-запросы. Все блоки с флекс контейнерами.
 
-Доставать картинки предстоит из Фигмы. Это расхожая практика, поэтому полезно потренироваться.
-Не забудьте [оптимизировать картинки](https://tinypng.com/), чтобы ваш сайт загружался быстрее.
 
-Удачи!
+Технологии использовались: 
+
+Html;
+Css;
+Flex-box;
+BEM Nested;
+Git & GitHub;
+Grid;
+Figma;
+Media queries
+API;
+Simple css animation;
+
+* [Link to layout in Figma](https://www.figma.com/file/5S2WSbEFL6awjVWJ0NWL8Q/Sprint-3_-Russia-_-desktop-mobile?node-id=28503%3A0)
+
+https://maximtsirlin.github.io/russian-travel/
