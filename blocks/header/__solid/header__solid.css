@@ -1,13 +1,13 @@
 .header__solid {
-    border-top: 1px solid #545454;
-    opacity: 70%;
-    margin-top: 34px;
-    margin-bottom: 0px;
+  border-top: 1px solid #545454;
+  opacity: 70%;
+  margin-top: 34px;
+  margin-bottom: 0px;
+}
+
+
+@media only screen and (max-width: 425px) {
+  .header__solid {
+    margin-top: 25px;
   }
-  
-  
-  @media only screen and (max-width: 425px) {
-    .header__solid {
-      margin-top: 25px;
-    }
-  }
+}

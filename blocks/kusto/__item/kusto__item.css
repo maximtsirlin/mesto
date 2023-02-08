@@ -1,12 +1,11 @@
 .kusto__item {
-    width: 100%;
-  
-    list-style-type: none;
-  }
+  width: 100%;
+  list-style-type: none;
+}
 
 
-  @media only screen and (max-width: 425px) {
-    .kusto__item {
-        text-align: center;
-    }
+@media only screen and (max-width: 425px) {
+  .kusto__item {
+    text-align: center;
   }
+}

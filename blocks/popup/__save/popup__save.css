@@ -1,6 +1,6 @@
 .popup__save {
     margin-top: 46px;
-        padding: 13px;
+    padding: 13px;
     background-color: black;
     color: white;
     font-weight: 400;
@@ -20,9 +20,9 @@
 
 
 @media only screen and (max-width: 425px) {
-    .popup__save  {
+    .popup__save {
         margin-top: 42px;
         font-size: 14px;
         line-height: 17px;
     }
-    }
+}

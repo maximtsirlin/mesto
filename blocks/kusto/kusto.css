@@ -1,21 +1,20 @@
 .kusto {
-    display: grid;
-    gap: 10px 29px;
-    padding-top: 41px;
-    max-width: 880px;
-    grid-template-columns: repeat(1, 77fr 284fr 284fr);
-  }
+  display: grid;
+  gap: 10px 29px;
+  padding-top: 41px;
+  max-width: 880px;
+  grid-template-columns: repeat(1, 77fr 284fr 284fr);
+}
 
-  @media only screen and (max-width: 425px) {
-    .kusto {
-      padding-top: 42px;
-      grid-template-columns: repeat(1, 288px);
-      margin-left: auto;
-      margin-right: auto;
-      margin-top: 0;
-      margin-bottom: 0;
-      gap: 21px;
-      justify-content: center;
-    }
+@media only screen and (max-width: 425px) {
+  .kusto {
+    padding-top: 42px;
+    grid-template-columns: repeat(1, 288px);
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0;
+    margin-bottom: 0;
+    gap: 21px;
+    justify-content: center;
   }
-  
+}

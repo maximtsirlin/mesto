@@ -10,14 +10,14 @@
   background-repeat: no-repeat;
   cursor: pointer;
   border: none;
-  }
+}
 
 
-  .cards__button:hover {
-    background-image: url(../../../images/heart-hover.svg);
-  }
+.cards__button:hover {
+  background-image: url(../../../images/heart-hover.svg);
+}
 
 
-  .cards__button:active {
-    background-image: url(../../../images/heart-avtive.svg);
-  }
+.cards__button:active {
+  background-image: url(../../../images/heart-avtive.svg);
+}

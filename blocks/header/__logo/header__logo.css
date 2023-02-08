@@ -1,12 +1,12 @@
 .header__logo {
-    padding-top: 45px;
+  padding-top: 45px;
+}
+
+
+@media only screen and (max-width: 425px) {
+  .header__logo {
+    padding-top: 27px;
+    padding-left: 27px;
+    width: 105px;
   }
-  
-  
-  @media only screen and (max-width: 425px) {
-    .header__logo {
-        padding-top: 27px;
-      padding-left: 27px;
-      width: 105px;
-    }
-  }
+}
