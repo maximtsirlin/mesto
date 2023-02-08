@@ -10,7 +10,6 @@
   
   @media only screen and (max-width: 425px) {
     .kusto__image {
-      margin-top: 25px;
       margin-left: auto;
       margin-right: auto;
       margin-top: 0;
