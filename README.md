@@ -1,17 +1,25 @@
-# Проект: Место
+Mesto
 
-### Обзор
+Это адаптивная страница о путешествиях. С возможностью редактирования профиля через модальное окно и добаления карточек с туристическими местами. 
 
-* Figma
-* Картинки
+Я использовал базовые технологии, это html/css, написал выпадающее модальное окно на JavaScript с возможностью редактирования профилья через imputs и submit  
 
-**Figma**
 
-* [Ссылка на макет в Figma](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1)
+Технологии использовались: 
 
-**Картинки**
+Html;
+Css;
+JavaScript;
 
-Доставать картинки предстоит из Фигмы. Это расхожая практика, поэтому полезно потренироваться.
-Не забудьте [оптимизировать картинки](https://tinypng.com/), чтобы ваш сайт загружался быстрее.
+Flex-box;
+BEM Nested;
+Git & GitHub;
+Grid;
+Figma;
+Media queries;
+API;
+Simple css animation;
 
-Удачи!
+* [Link to layout in Figma](https://www.figma.com/file/5S2WSbEFL6awjVWJ0NWL8Q/Sprint-3_-Russia-_-desktop-mobile?node-id=28503%3A0)
+
+https://maximtsirlin.github.io/main/
