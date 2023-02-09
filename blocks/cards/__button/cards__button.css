@@ -1,8 +1,6 @@
 .cards__button {
   width: 24px;
   height: 24px;
-  top: -41px;
-  right: -39px;
   background-color: transparent;
   background-image: url(../../../images/heart-desabled.svg);
   background-size: 17px;

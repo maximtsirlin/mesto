@@ -12,10 +12,7 @@
   .cards {
     padding-top: 36px;
     grid-template-columns: repeat(1, 288px);
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 0;
-    margin-bottom: 0;
+
 
   }
 }

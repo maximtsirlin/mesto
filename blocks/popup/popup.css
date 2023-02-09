@@ -11,10 +11,3 @@
     box-sizing: border-box;
     padding: 24px;
 }
-
-
-@media only screen and (max-width: 425px) {
-    .popup {
-        padding: 19px;
-    }
-}

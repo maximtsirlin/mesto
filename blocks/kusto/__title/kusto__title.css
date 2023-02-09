@@ -1,17 +1,16 @@
 .kusto__title {
   font-size: 42px;
   max-width: 302px;
+  font-weight: 500;
   line-height: 48px;
   margin-top: 22px;
   margin-bottom: 0px;
-
 }
 
 @media only screen and (max-width: 425px) {
   .kusto__title {
     margin-left: 30px;
     margin-top: 0;
-    margin-bottom: 0;
     font-size: 27px;
     line-height: 32.68px;
     max-width: 288px;
