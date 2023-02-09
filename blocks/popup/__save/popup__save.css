@@ -8,7 +8,9 @@
     line-height: 22px;
     border: none;
     border-radius: 3px;
+    text-align: center;
     cursor: pointer;
+    width: 95%;
 }
 
 

@@ -1,5 +1,5 @@
 
-const buttonAbout = document.querySelector('.kusto__edit-button');
+const buttonAbout = document.querySelector('.kusto__icon');
 const popup = document.querySelector('.popup');
 const buttonClose = popup.querySelector('.popup__close');
 const buttonSave = popup.querySelector('.popup__save');
@@ -10,8 +10,8 @@ let aboutPerson = document.querySelector ('.kusto__description');
 
 let formElement = document.querySelector ('.popup');
 
-let nameInput = document.querySelector ('.popup__input-name');
-let jobInput = document.querySelector ('.popup__input-job');
+let nameInput = document.querySelector ('.popup__input_name');
+let jobInput = document.querySelector ('.popup__input_job');
 
 
 formElement.addEventListener("submit", () => {
@@ -24,18 +24,15 @@ const handleAboutButtonClick = () => {
     popup.classList.add('popup_opened');
 }
 
-
 const handleCloseButtonClick = () => {
     popup.classList.remove('popup_opened');
 }
-
 
 function handleFormElementSubmit (evt) {
     evt.preventDefault();
     myName.textContent = nameInput.value;
     aboutPerson.textContent = jobInput.value;  
 }
-
 
 formElement.addEventListener('click', handleFormElementSubmit); 
 buttonAbout.addEventListener('click', handleAboutButtonClick);
