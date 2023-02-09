@@ -5,6 +5,8 @@
 @import url(../blocks/header/__logo/header__logo.css);
 @import url(../blocks/header/__solid/header__solid.css);
 
+@import url(../blocks/main/content.css);
+
 @import url(../blocks/kusto/kusto.css);
 @import url(../blocks/kusto/__form/kusto__form.css);
 @import url(../blocks/kusto/__item/kusto__item.css);
