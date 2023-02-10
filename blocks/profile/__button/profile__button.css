@@ -1,4 +1,4 @@
-.kusto__button {
+.profile__button {
   border: 2px solid rgb(255 255 255);
   border-radius: 2px;
   max-width: 146px;
@@ -18,16 +18,17 @@
 }
 
 
-.kusto__button:hover {
+.profile__button:hover {
   opacity: 0.6;
 }
 
 
 @media only screen and (max-width: 425px) {
-  .kusto__button {
+  .profile__button {
     max-width: 287px;
     margin-top: 6px;
     margin-right: auto;
     margin-left: auto;
+    background-size: 15px;
   }
 }

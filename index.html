@@ -17,19 +17,17 @@
     </header>
 
     <main class="content">
-      <section class="kusto">
-        <div class="kusto__item">
-          <img src="./images/image.jpg" alt="Жак-Ив Кусто аватар" class="kusto__image">
-        </div>
-        <div class="kusto__item">
-          <div class="kusto__form">
-            <h1 class="kusto__title">Жак-Ив Кусто</h1>
-            <type class="kusto__icon"></type>
+      <section class="profile">
+          <img src="./images/image.jpg" alt="Жак-Ив Кусто аватар" class="profile__image">
+        <div class="profile__item">
+          <div class="profile__form">
+            <h1 class="profile__title">Жак-Ив Кусто</h1>
+            <type class="profile__icon"></type>
           </div>
-          <p class="kusto__description">Исследователь океана</p>
+          <p class="profile__description">Исследователь океана</p>
 
         </div>
-          <type class="kusto__button" aria-label="кусто кнопка"></type>     
+          <button class="profile__button" type="" aria-label="кнопка"></button>     
       </section>
 
       <section class="cards">
@@ -37,28 +35,28 @@
           <img src="./images/kamchatka.png" alt="Камчатка вулкан" class="cards__item">
           <div class="cards__form">
             <h2 class="cards__description">Камчатка</h2>
-            <type class="cards__button" aria-label="Камчатка лайк"></type>
+            <button class="cards__button" type="" aria-label="Камчатка лайк"></button>
           </div>
         </div>
         <div class="cards__cell">
           <img src="./images/teriberka.png" alt="Териберка ржавый корабль" class="cards__item">
           <div class="cards__form">
             <h2 class="cards__description">Териберка</h2>
-            <type class="cards__button" aria-label="Териберка лайк"></type>
+            <button class="cards__button" type="" aria-label="Териберка лайк"></button>
           </div>
         </div>
         <div class="cards__cell">
           <img src="./images/new_earth.png" alt="Новая земля льды" class="cards__item">
           <div class="cards__form">
             <h2 class="cards__description">Новая земля</h2>
-            <type class="cards__button" aria-label="Новая земля лайк"></type>
+            <button class="cards__button" type="" aria-label="Новая земля лайк"></button>
           </div>
         </div>
         <div class="cards__cell">
           <img src="./images/nahodka.png" alt="Находка сопки" class="cards__item">
           <div class="cards__form">
             <h2 class="cards__description">Находка</h2>
-            <type class="cards__button" aria-label="Находка лайк"></type>
+            <button class="cards__button" type="" aria-label="Находка лайк"></button>
           </div>
         </div>
 
@@ -66,14 +64,14 @@
           <img src="./images/baltic_sea.png" alt="Пляж балтийского моря" class="cards__item">
           <div class="cards__form">
             <h2 class="cards__description">Балтийское море</h2>
-            <type class="cards__button" aria-label="Балтийское море лайк"></type>
+            <button class="cards__button" type="" aria-label="Балтийское море лайк"></button>
           </div>
         </div>
         <div class="cards__cell">
           <img src="./images/beringov.png" alt="Берингов пролив" class="cards__item">
           <div class="cards__form">
             <h2 class="cards__description">Берингов пролив</h2>
-            <type class="cards__button" aria-label="Берингов пролив лайк"></type>
+            <button class="cards__button" type="" aria-label="Берингов пролив лайк"></button>
           </div>
         </div>
       </section>
@@ -87,12 +85,12 @@
 
     <div class="popup">
       <div class="popup__container">
-        <type class="popup__close"></type>
+        <button class="popup__close"></button>
         <h2 class="popup__header">Редактировать профиль</h2>
         <form class="popup__input-container" name="form">
-          <input type="text" name= "text" class="popup__input popup__input_name">
-          <input type="text" name= "text" class="popup__input popup__input_job">
-          <type class="popup__save" type="submit">Сохранить</type>
+          <input type="text" name= "text" class="popup__input popup_input_name">
+          <input type="text" name= "text" class="popup__input popup_input_job">
+          <button class="popup__save" type="submit">Сохранить</button>
         </form>
       </div>
     </div>

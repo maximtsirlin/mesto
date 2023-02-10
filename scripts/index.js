@@ -1,40 +1,35 @@
 
-const buttonAbout = document.querySelector('.kusto__icon');
+const buttonAbout = document.querySelector('.profile__icon');
 const popup = document.querySelector('.popup');
 const buttonClose = popup.querySelector('.popup__close');
-const buttonSave = popup.querySelector('.popup__save');
+const title = document.querySelector('.profile__title');
+const description = document.querySelector('.profile__description');
 
+let myName = document.querySelector('.profile__title');
+let aboutPerson = document.querySelector('.profile__description');
+let formElement = document.querySelector('.popup__input-container');
+let nameInput = document.querySelector('.popup_input_name');
+let jobInput = document.querySelector('.popup_input_job');
 
-let myName = document.querySelector ('.kusto__title');
-let aboutPerson = document.querySelector ('.kusto__description');
-
-let formElement = document.querySelector ('.popup');
-
-let nameInput = document.querySelector ('.popup__input_name');
-let jobInput = document.querySelector ('.popup__input_job');
-
-
-formElement.addEventListener("submit", () => {
-    console.log("Событие отправки формы")
-})
 
 const handleAboutButtonClick = () => {
-    nameInput.value = document.querySelector ('.kusto__title').textContent;
-    jobInput.value = document.querySelector ('.kusto__description').textContent;
+    nameInput.value = title.textContent;
+    jobInput.value = description.textContent;
     popup.classList.add('popup_opened');
 }
 
-const handleCloseButtonClick = () => {
+const closePopup = () =>  {
     popup.classList.remove('popup_opened');
 }
 
-function handleFormElementSubmit (evt) {
+const handleFormElementSubmit = (evt) => {
     evt.preventDefault();
     myName.textContent = nameInput.value;
-    aboutPerson.textContent = jobInput.value;  
+    aboutPerson.textContent = jobInput.value;
+    closePopup();
 }
 
-formElement.addEventListener('click', handleFormElementSubmit); 
+formElement.addEventListener('submit', handleFormElementSubmit);
 buttonAbout.addEventListener('click', handleAboutButtonClick);
-buttonClose.addEventListener('click', handleCloseButtonClick);
-buttonSave.addEventListener('click', handleCloseButtonClick);
+buttonClose.addEventListener('click', closePopup);
+

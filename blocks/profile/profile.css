@@ -1,4 +1,4 @@
-.kusto {
+.profile {
   display: grid;
   gap: 10px 29px;
   padding-top: 41px;
@@ -9,7 +9,7 @@
 
 
 @media only screen and (max-width: 425px) {
-  .kusto {
+  .profile {
     padding-top: 42px;
     grid-template-columns: repeat(1, 288px);
     margin-left: auto;
@@ -17,6 +17,5 @@
     margin-top: 0;
     margin-bottom: 0;
     gap: 21px;
-    justify-content: center;
   }
 }

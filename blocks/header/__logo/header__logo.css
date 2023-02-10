@@ -1,5 +1,6 @@
 .header__logo {
-  padding-top: 45px;
+  padding-top: 10px;
+  padding-bottom: 36px;
   width: 144px;
 }
 
@@ -9,5 +10,6 @@
     padding-top: 27px;
     padding-left: 27px;
     width: 105px;
+    padding-bottom: 26px;
   }
 }

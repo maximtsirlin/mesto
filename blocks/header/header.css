@@ -1,0 +1,13 @@
+.header {
+    border-bottom: 1px solid #545454;
+    color: rgba(255, 255, 255, 0.7);
+    margin-top: 34px;
+    margin-bottom: 0px;
+}
+
+
+@media only screen and (max-width: 425px) {
+    .header {
+        margin-top: 0px;
+    }
+}

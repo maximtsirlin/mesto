@@ -1,4 +1,4 @@
-.kusto__title {
+.profile__title {
   font-size: 42px;
   max-width: 302px;
   font-weight: 500;
@@ -11,8 +11,8 @@
 }
 
 @media only screen and (max-width: 425px) {
-  .kusto__title {
-    margin-left: 30px;
+  .profile__title {
+    margin-left: 48px;
     margin-top: 0;
     font-size: 27px;
     line-height: 32.68px;

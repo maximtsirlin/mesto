@@ -1,4 +1,4 @@
-.kusto__description {
+.profile__description {
   font-size: 18px;
   font-weight: 400;
   line-height: 21.78px;
@@ -8,7 +8,7 @@
 
 
 @media only screen and (max-width: 425px) {
-  .kusto__description {
+  .profile__description {
     padding-right: 0;
     font-size: 14px;
   }
