@@ -8,8 +8,8 @@ const description = document.querySelector('.profile__description');
 let myName = document.querySelector('.profile__title');
 let aboutPerson = document.querySelector('.profile__description');
 let formElement = document.querySelector('.popup__input-container');
-let nameInput = document.querySelector('.popup_input_name');
-let jobInput = document.querySelector('.popup_input_job');
+let nameInput = document.querySelector('.popup__input_name');
+let jobInput = document.querySelector('.popup__input_job');
 
 
 const handleAboutButtonClick = () => {
