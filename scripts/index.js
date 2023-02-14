@@ -8,8 +8,8 @@ const description = document.querySelector('.profile__description');
 let myName = document.querySelector('.profile__title');
 let aboutPerson = document.querySelector('.profile__description');
 let formElement = document.querySelector('.popup__input-container');
-let nameInput = document.querySelector('.popup__input_name');
-let jobInput = document.querySelector('.popup__input_job');
+let nameInput = document.querySelector('.popup__form_input_name');
+let jobInput = document.querySelector('.popup__form_input_job');
 
 
 const handleAboutButtonClick = () => {
@@ -32,4 +32,3 @@ const handleFormElementSubmit = (evt) => {
 formElement.addEventListener('submit', handleFormElementSubmit);
 buttonAbout.addEventListener('click', handleAboutButtonClick);
 buttonClose.addEventListener('click', closePopup);
-

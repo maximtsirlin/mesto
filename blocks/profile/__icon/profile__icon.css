@@ -18,9 +18,9 @@
 
 @media only screen and (max-width: 425px) {
   .profile__icon {
-    padding-left: 15px;
-    width: 1px;
-    height: 16px;
+    padding-left: 10px;
+    width: 18px;
+    height: 18px;
     margin-top: 10px;
     margin-right: 23px;
     background-size: 9px;
