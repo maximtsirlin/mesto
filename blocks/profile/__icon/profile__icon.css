@@ -16,6 +16,13 @@
   opacity: 0.6;
 }
 
+@media only screen and (max-width: 768px) {
+  .profile__icon {
+    margin-top: 15px;
+}
+  
+}
+
 @media only screen and (max-width: 425px) {
   .profile__icon {
     padding-left: 10px;

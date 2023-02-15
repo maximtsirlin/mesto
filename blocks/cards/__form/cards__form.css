@@ -5,13 +5,15 @@
   align-items: center;
   padding-left: 18px;
   padding-right: 22px;
-  height: 77px;
+  padding-top: 4px;
+  padding-bottom: 4px;
 }
 
 
 @media only screen and (max-width: 425px) {
   .cards__form {
-    height: 73px;
+    padding-top: 3px;
+    padding-bottom: 3px;
   }
 }
 

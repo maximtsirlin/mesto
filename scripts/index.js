@@ -5,8 +5,6 @@ const buttonClose = popup.querySelector('.popup__close');
 const title = document.querySelector('.profile__title');
 const description = document.querySelector('.profile__description');
 
-let myName = document.querySelector('.profile__title');
-let aboutPerson = document.querySelector('.profile__description');
 let formElement = document.querySelector('.popup__input-container');
 let nameInput = document.querySelector('.popup__form_input_name');
 let jobInput = document.querySelector('.popup__form_input_job');
@@ -24,8 +22,8 @@ const closePopup = () =>  {
 
 const handleFormElementSubmit = (evt) => {
     evt.preventDefault();
-    myName.textContent = nameInput.value;
-    aboutPerson.textContent = jobInput.value;
+    title.textContent = nameInput.value;
+    description.textContent = jobInput.value;
     closePopup();
 }
 

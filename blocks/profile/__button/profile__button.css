@@ -23,12 +23,19 @@
 }
 
 
+@media only screen and (max-width: 768px) {
+  .profile__button {
+    max-width: 723px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0;
+}
+  
+  }
+
 @media only screen and (max-width: 425px) {
   .profile__button {
     max-width: 287px;
-    margin-top: 6px;
-    margin-right: auto;
-    margin-left: auto;
     background-size: 15px;
   }
 }
