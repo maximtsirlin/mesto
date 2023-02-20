@@ -1,0 +1,31 @@
+.add__close {
+    width: 32px;
+    height: 32px;
+    position: absolute;
+    top: -41px;
+    right: -39px;
+    border: none;
+    background-color: transparent;
+    background-image: url(../../../images/Close_Icon.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+
+
+.add__close:hover {
+    opacity: 0.6;
+}
+
+@media only screen and (max-width: 768px) {
+    .add__close {
+        right: 0px;
+    }
+}
+
+@media only screen and (max-width: 425px) {
+    .add__close {
+        top: -38px;
+        width: 21px;
+    }
+}
