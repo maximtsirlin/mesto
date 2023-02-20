@@ -1,0 +1,30 @@
+.add__save {
+    margin-top: 46px;
+    padding: 13px;
+    background-color: black;
+    color: white;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+    border: none;
+    border-radius: 2px;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+}
+
+
+.add__save:hover {
+    opacity: 0.8;
+}
+
+
+
+
+@media only screen and (max-width: 425px) {
+    .add__save {
+        margin-top: 42px;
+        font-size: 14px;
+        line-height: 17px;
+    }
+}
