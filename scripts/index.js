@@ -81,33 +81,37 @@ const initialCards = [
     }
   ]; 
 
-const cardsListContainer = document.querySelector('.cards');
-const form = document.querySelector('.add_form');
-const template = document.querySelector('.cards__cell');
+const cardsListContainer = document.querySelector('.cards'); /* нахожу контейнер куда рендерить */
+const form = document.querySelector('.add_form'); /* нахожу форму */
+const template = document.getElementById('cards__template').content;
 
 const handleDelete = (evt) => {
-    evt.target.closest('.todo_item').remove();
+    evt.target.closest('.cards__cell').remove();
 }
 
+
+
+
 const renderItem = (title, link) => {
-    const newItemElement = template.cloneNode(true);
+    const newItemElement = template.cloneNode(true); /* клонирую форму */
     const newItemTitle = newItemElement.querySelector('.cards__description');
     newItemTitle.textContent = title;
     const newItemImage = newItemElement.querySelector('.cards__item');
     newItemImage.src = link;
     newItemImage.alt = title;
-    // const deleteButton = newItemElement.querySelector('.button__delete');  /* кнопки */
+
+    const deleteButton = newItemElement.querySelector('.cards__delete');  /* кнопки */
     // const editButton = newItemElement.querySelector('.button__edit');
     // const dublicateButton = newItemElement.querySelector('.button__dublicate');
-    // deleteButton.addEventListener('click', handleDelete)
+    deleteButton.addEventListener('click', handleDelete)
 
 
     cardsListContainer.append(newItemElement)
-}  /* создает элемент */
+}  /* создает элемент, стрелочная функция */
 
 
 
 initialCards.forEach((card)=> {
     renderItem(card.name, card.link)
 
-})
+}) /* функция которая должна что-то добавлять на страницу */

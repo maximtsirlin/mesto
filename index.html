@@ -31,36 +31,39 @@
 
       <section class="section">
         <form class="add_form">
-            <input class="add_form__input" name="title" type="text" value="Разобраться в замыканиях" />
-            <button class="add_form__button" type="submit">Сохранить!</button>
+          <input class="add_form__input" name="title" type="text" value="Разобраться в замыканиях" />
+          <button class="add_form__button" type="submit">Сохранить!</button>
         </form>
         <ul class="items">
         </ul>
-    </section>
-    <template id="item">
+      </section>
+
+      <template id="item">
         <li class="todo_item">
-            <h3 class="todo_item__header">Полить цветы</h3>
-            <div class="buttons">
-                <button type="button" class="button button__edit"></button>
-                <button type="button" class="button button__duplicate"></button>
-                <button type="button" class="button button__delete"></button>
-            </div>
+          <h3 class="todo_item__header">Полить цветы</h3>
+          <div class="buttons">
+            <button type="button" class="button button__edit"></button>
+            <button type="button" class="button button__duplicate"></button>
+            <button type="button" class="button button__delete"></button>
+          </div>
         </li>
-    </template>
+      </template>
+
+      <template id="cards__template">
+        <div class="cards__cell">
+          <img src="./images/kamchatka.png" alt="Камчатка вулкан" class="cards__item">
+          <button class="cards__delete" type="button"></button>
+          <div class="cards__form">
+            <h2 class="cards__description">Камчатка</h2>
+            <button class="cards__button" type="button" aria-label="Камчатка лайк"></button>
+          </div>
+        </div>
+      </template>
 
 
-    <div class="cards__cell">
-      <img src="./images/kamchatka.png" alt="Камчатка вулкан" class="cards__item">
-      <div class="cards__form">
-        <h2 class="cards__description">Камчатка</h2>
-        <button class="cards__button" type="button" aria-label="Камчатка лайк"></button>
-      </div>
-    </div>
-   
 
-
-    <section class="cards">
-    </section>
+      <section class="cards">
+      </section>
 
     </main>
     <footer class="footer">

@@ -6,4 +6,6 @@
   background-clip: border-box;
   border-radius: 8px;
   overflow: hidden;
+  max-width: 288px;
+  position: relative;
 }
