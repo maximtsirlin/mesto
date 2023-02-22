@@ -29,50 +29,38 @@
         <button class="profile__button" type="button" aria-label="кнопка"></button>
       </section>
 
-      <section class="cards">
-        <div class="cards__cell">
-          <img src="./images/kamchatka.png" alt="Камчатка вулкан" class="cards__item">
-          <div class="cards__form">
-            <h2 class="cards__description">Камчатка</h2>
-            <button class="cards__button" type="button" aria-label="Камчатка лайк"></button>
-          </div>
-        </div>
-        <div class="cards__cell">
-          <img src="./images/teriberka.png" alt="Териберка ржавый корабль" class="cards__item">
-          <div class="cards__form">
-            <h2 class="cards__description">Териберка</h2>
-            <button class="cards__button" type="button" aria-label="Териберка лайк"></button>
-          </div>
-        </div>
-        <div class="cards__cell">
-          <img src="./images/new_earth.png" alt="Новая земля льды" class="cards__item">
-          <div class="cards__form">
-            <h2 class="cards__description">Новая земля</h2>
-            <button class="cards__button" type="button" aria-label="Новая земля лайк"></button>
-          </div>
-        </div>
-        <div class="cards__cell">
-          <img src="./images/nahodka.png" alt="Находка сопки" class="cards__item">
-          <div class="cards__form">
-            <h2 class="cards__description">Находка</h2>
-            <button class="cards__button" type="button" aria-label="Находка лайк"></button>
-          </div>
-        </div>
-        <div class="cards__cell">
-          <img src="./images/baltic_sea.png" alt="Пляж балтийского моря" class="cards__item">
-          <div class="cards__form">
-            <h2 class="cards__description">Балтийское море</h2>
-            <button class="cards__button" type="button" aria-label="Балтийское море лайк"></button>
-          </div>
-        </div>
-        <div class="cards__cell">
-          <img src="./images/beringov.png" alt="Берингов пролив" class="cards__item">
-          <div class="cards__form">
-            <h2 class="cards__description">Берингов пролив</h2>
-            <button class="cards__button" type="button" aria-label="Берингов пролив лайк"></button>
-          </div>
-        </div>
-      </section>
+      <section class="section">
+        <form class="add_form">
+            <input class="add_form__input" name="title" type="text" value="Разобраться в замыканиях" />
+            <button class="add_form__button" type="submit">Сохранить!</button>
+        </form>
+        <ul class="items">
+        </ul>
+    </section>
+    <template id="item">
+        <li class="todo_item">
+            <h3 class="todo_item__header">Полить цветы</h3>
+            <div class="buttons">
+                <button type="button" class="button button__edit"></button>
+                <button type="button" class="button button__duplicate"></button>
+                <button type="button" class="button button__delete"></button>
+            </div>
+        </li>
+    </template>
+
+
+    <div class="cards__cell">
+      <img src="./images/kamchatka.png" alt="Камчатка вулкан" class="cards__item">
+      <div class="cards__form">
+        <h2 class="cards__description">Камчатка</h2>
+        <button class="cards__button" type="button" aria-label="Камчатка лайк"></button>
+      </div>
+    </div>
+   
+
+
+    <section class="cards">
+    </section>
 
     </main>
     <footer class="footer">

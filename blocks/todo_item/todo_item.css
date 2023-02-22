@@ -1,0 +1,9 @@
+.todo_item {
+    border: 1px solid #6f6f6f;
+    box-sizing: border-box;
+    border-radius: 5px;
+    display: flex;
+    padding: 0px 45px;
+    height: 110px;
+    align-items: center;
+  }

@@ -1,4 +1,6 @@
 
+
+
 const buttonAbout = document.querySelector('.profile__icon');
 const popup = document.querySelector('.popup');
 const buttonClose = popup.querySelector('.popup__close');
@@ -49,3 +51,63 @@ buttonClose.addEventListener('click', closePopup);
 
 aboutAddButton.addEventListener('click', handleAddButtonClick); /* функция открытия */
 closeAddButton.addEventListener('click', handleСloseAddButtonClick); /* функция закрытия */
+
+///////////////////////////////////////////////////////////////////
+
+const initialCards = [
+    {
+      name: 'Архыз',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+    },
+    {
+      name: 'Челябинская область',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+    },
+    {
+      name: 'Иваново',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+    },
+    {
+      name: 'Камчатка',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+    },
+    {
+      name: 'Холмогорский район',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+    },
+    {
+      name: 'Байкал',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+    }
+  ]; 
+
+const cardsListContainer = document.querySelector('.cards');
+const form = document.querySelector('.add_form');
+const template = document.querySelector('.cards__cell');
+
+const handleDelete = (evt) => {
+    evt.target.closest('.todo_item').remove();
+}
+
+const renderItem = (title, link) => {
+    const newItemElement = template.cloneNode(true);
+    const newItemTitle = newItemElement.querySelector('.cards__description');
+    newItemTitle.textContent = title;
+    const newItemImage = newItemElement.querySelector('.cards__item');
+    newItemImage.src = link;
+    newItemImage.alt = title;
+    // const deleteButton = newItemElement.querySelector('.button__delete');  /* кнопки */
+    // const editButton = newItemElement.querySelector('.button__edit');
+    // const dublicateButton = newItemElement.querySelector('.button__dublicate');
+    // deleteButton.addEventListener('click', handleDelete)
+
+
+    cardsListContainer.append(newItemElement)
+}  /* создает элемент */
+
+
+
+initialCards.forEach((card)=> {
+    renderItem(card.name, card.link)
+
+})
