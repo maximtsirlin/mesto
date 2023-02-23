@@ -81,37 +81,47 @@ const initialCards = [
     }
   ]; 
 
-const cardsListContainer = document.querySelector('.cards'); /* нахожу контейнер куда рендерить */
-const form = document.querySelector('.add_form'); /* нахожу форму */
-const template = document.getElementById('cards__template').content;
+  const cardsListContainer = document.querySelector('.cards'); /* нахожу контейнер куда рендерить */
+  const form = document.querySelector('.add_form'); /* нахожу форму */
+  const template = document.getElementById('cards__template').content;
+  
+  const handleDelete = (evt) => {
+      evt.target.closest('.cards__cell').remove();
+  }
+  
+  
+  
+  
+  const renderItem = (title, link) => {
+      const newItemElement = template.cloneNode(true); /* клонирую форму */
+      const newItemTitle = newItemElement.querySelector('.cards__description');
+      newItemTitle.textContent = title;
+      const newItemImage = newItemElement.querySelector('.cards__item');
+      newItemImage.src = link;
+      newItemImage.alt = title;
+  
+      const deleteButton = newItemElement.querySelector('.cards__delete');  /* кнопки */
+      // const editButton = newItemElement.querySelector('.button__edit');
+      // const dublicateButton = newItemElement.querySelector('.button__dublicate');
+      deleteButton.addEventListener('click', handleDelete)
+  
+  
+      cardsListContainer.append(newItemElement)
+  }  /* создает элемент, стрелочная функция */
+  
+  
+  
+  initialCards.forEach((card)=> {
+      renderItem(card.name, card.link)
+  
+  }) /* функция которая должна что-то добавлять на страницу */
 
-const handleDelete = (evt) => {
-    evt.target.closest('.cards__cell').remove();
-}
 
 
 
-
-const renderItem = (title, link) => {
-    const newItemElement = template.cloneNode(true); /* клонирую форму */
-    const newItemTitle = newItemElement.querySelector('.cards__description');
-    newItemTitle.textContent = title;
-    const newItemImage = newItemElement.querySelector('.cards__item');
-    newItemImage.src = link;
-    newItemImage.alt = title;
-
-    const deleteButton = newItemElement.querySelector('.cards__delete');  /* кнопки */
-    // const editButton = newItemElement.querySelector('.button__edit');
-    // const dublicateButton = newItemElement.querySelector('.button__dublicate');
-    deleteButton.addEventListener('click', handleDelete)
-
-
-    cardsListContainer.append(newItemElement)
-}  /* создает элемент, стрелочная функция */
-
-
-
-initialCards.forEach((card)=> {
-    renderItem(card.name, card.link)
-
-}) /* функция которая должна что-то добавлять на страницу */
+form.addEventListener('submit', (evt) => {
+  evt.preventDefault();
+  const title = evt.target.title.value;
+  renderItem(cardsListContainer, title);
+  evt.target.title.value = '';
+})
