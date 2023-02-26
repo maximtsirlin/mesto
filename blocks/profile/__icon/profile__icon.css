@@ -19,8 +19,8 @@
 @media only screen and (max-width: 768px) {
   .profile__icon {
     margin-top: 15px;
-}
-  
+  }
+
 }
 
 @media only screen and (max-width: 425px) {
@@ -31,6 +31,6 @@
     margin-top: 10px;
     margin-right: 23px;
     background-size: 9px;
-}
-  
+  }
+
 }

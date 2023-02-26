@@ -7,17 +7,5 @@
   position: relative;
   list-style-type: none;
   display: flex;
-  flex-direction: column;  
+  flex-direction: column;
 }
-
-
-
-display: flex;
-flex-direction: column;
-min-width: 0;
-background-color: #fff;
-background-clip: border-box;
-border-radius: 8px;
-overflow: hidden;
-max-width: 288px;
-position: relative;

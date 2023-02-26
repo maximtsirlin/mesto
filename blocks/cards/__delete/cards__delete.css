@@ -10,10 +10,8 @@
   background-size: contain;
   background-repeat: no-repeat;
   cursor: pointer;
-  }
+}
 
-
-
-  .cards__delete:hover {
-    opacity: 0.6;
-  }
+.cards__delete:hover {
+  opacity: 0.6;
+}
