@@ -21,33 +21,13 @@
         <div class="profile__item">
           <div class="profile__form">
             <h1 class="profile__title">Жак-Ив Кусто</h1>
-            <button class="profile__icon" type="button"></button>
+            <button class="profile__edit-button profile__icon" type="button"></button>
           </div>
           <p class="profile__description">Исследователь океана</p>
 
         </div>
-        <button class="profile__button" type="button" aria-label="кнопка"></button>
+        <button class="profile__add-button" type="button" aria-label="кнопка"></button>
       </section>
-
-      <section class="section">
-        <form class="add_form">
-          <input class="add_form__input" name="title" type="text" value="Разобраться в замыканиях" />
-          <button class="add_form__button" type="submit">Сохранить!</button>
-        </form>
-        <ul class="items">
-        </ul>
-      </section>
-
-      <template id="item">
-        <li class="todo_item">
-          <h3 class="todo_item__header">Полить цветы</h3>
-          <div class="buttons">
-            <button type="button" class="button button__edit"></button>
-            <button type="button" class="button button__duplicate"></button>
-            <button type="button" class="button button__delete"></button>
-          </div>
-        </li>
-      </template>
 
       <template id="cards__template">
         <div class="cards__cell">
@@ -60,8 +40,6 @@
         </div>
       </template>
 
-
-
       <section class="cards">
       </section>
 
@@ -70,7 +48,7 @@
       <p class="footer__copyright">© 2020 Mesto Russia</p>
     </footer>
 
-    <div class="popup">
+    <div class="popup popup_edit">
       <div class="popup__container">
         <button class="popup__close" type="button"></button>
         <h2 class="popup__header">Редактировать профиль</h2>
@@ -82,16 +60,28 @@
       </div>
     </div>
 
-    <div class="add">
-      <div class="add__container">
-        <button class="add__close" type="button"></button>
-        <h2 class="add__header">Новое место</h2>
-        <form class="add__input-container" name="form">
-          <input type="text" name="input name" class="add__form add__form_input_name">
-          <input type="text" name="input link" class="add__form add__form_input_link">
-          <button class="add__save" type="submit">Создать</button>
+    <div class="popup popup_add">
+      <div class="popup__container">
+        <button class="popup__close" type="button"></button>
+        <h2 class="popup__header">Новое место</h2>
+        <form class="popup__input-add" name="form">
+          <input type="text" name="title" placeholder="Название" class="popup__form popup__form_input_name">
+          <input type="text" name="link" placeholder="Ссылка на картинку" class="popup__form popup__form_input_link">
+          <button class="popup__save" type="submit">Создать</button>
         </form>
       </div>
+    </div>
+
+    <div class="popup popup_image">
+
+      <div class="popup__image-container">
+        <button class="popup__close popup__close_theme_position" type="button"></button>
+        <figure>
+          <img src="./images/kamchatka.png" alt="Камчатка вулкан" class="popup__img">
+          <figcaption class="popup__figcaption"></figcaption>
+        </figure>
+      </div>
+
     </div>
 
   </div>

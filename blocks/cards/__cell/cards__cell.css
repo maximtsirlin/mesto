@@ -1,11 +1,23 @@
 .cards__cell {
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
+  margin: 0 auto;
+  width: 282px;
   background-color: #fff;
-  background-clip: border-box;
-  border-radius: 8px;
+  border-radius: 10px;
   overflow: hidden;
-  max-width: 288px;
   position: relative;
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;  
 }
+
+
+
+display: flex;
+flex-direction: column;
+min-width: 0;
+background-color: #fff;
+background-clip: border-box;
+border-radius: 8px;
+overflow: hidden;
+max-width: 288px;
+position: relative;

@@ -12,13 +12,10 @@
 
 
 .cards__button:hover {
-  background-image: url(../../../images/heart-hover.svg);
+  opacity: 0.6;
 }
 
 
-.cards__button:active {
-  background-image: url(../../../images/heart-avtive.svg);
-}
 
 
 

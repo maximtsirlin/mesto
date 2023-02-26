@@ -1,56 +1,82 @@
 
 
 
-const buttonAbout = document.querySelector('.profile__icon');
-const popup = document.querySelector('.popup');
-const buttonClose = popup.querySelector('.popup__close');
-const title = document.querySelector('.profile__title');
-const description = document.querySelector('.profile__description');
-/* открытие попапа для кнопки add */
-const aboutAddButton = document.querySelector('.profile__button') /* querySelectorAll выделяем кнопку */
-const add = document.querySelector('.add');
-/* закрытие попапа для кнопки add */
-const closeAddButton = add.querySelector('.add__close');
+const profileEditButton = document.querySelector('.profile__edit-button');
+const popupEdit = document.querySelector('.popup_edit');
 
-let formElement = document.querySelector('.popup__input-container');
-let nameInput = document.querySelector('.popup__form_input_name');
-let jobInput = document.querySelector('.popup__form_input_job');
+const profileTitle = document.querySelector('.profile__title'); /* выделяем заголовок */
+const profileDescription = document.querySelector('.profile__description');
+
+const placeAddButton = document.querySelector('.profile__add-button') 
+
+const popupAdd = document.querySelector('.popup_add');
+const popupAddSaveButton = popupAdd.querySelector('.popup__save'); /* выделяем кнопку создать */
+
+const popupImage = document.querySelector('.popup_image')
+const popupImageImg = popupImage.querySelector('.popup__img')
+const nameImgClicked = popupImage.querySelector('.popup__figcaption'); /* выделяем заголовок попапа */
 
 
-const handleAboutButtonClick = () => {
-    nameInput.value = title.textContent;
-    jobInput.value = description.textContent;
-    popup.classList.add('popup_opened');
+let profileEditForm = document.querySelector('.popup__input-container');
+let profileEditNameInput = document.querySelector('.popup__form_input_name');
+let profileEditJobInput = document.querySelector('.popup__form_input_job');
+
+const addPlaceForm = document.querySelector('.popup__input-add'); /* нахожу форму */
+
+
+
+const allPopups = document.querySelectorAll('.popup') /* нашли все попапы */
+
+
+
+const openPopup = (popup) => {
+  popup.classList.add('popup_opened');
 }
 
-const closePopup = () =>  {
-    popup.classList.remove('popup_opened');
+const closePopup = (popup) => {
+  popup.classList.remove('popup_opened');
 }
 
-const handleFormElementSubmit = (evt) => {
+allPopups.forEach((popup) => { /* пробегаемся по списку попапов ь */
+  const closeBtn = popup.querySelector('.popup__close')
+  if (closeBtn) {
+    closeBtn.addEventListener('click', () => {closePopup(popup)}) /* навешиваем на кнопку закрытия обработчик */
+  }
+})
+
+const profileEditOpenHandler = () => {
+    profileEditNameInput.value = profileTitle.textContent;
+    profileEditJobInput.value = profileDescription.textContent;
+    openPopup(popupEdit)
+}
+
+const profileEditSaveHandler = (evt) => {
     evt.preventDefault();
-    title.textContent = nameInput.value;
-    description.textContent = jobInput.value;
-    closePopup();
+    profileTitle.textContent = profileEditNameInput.value; /* добавляем его к инпуту */
+    profileDescription.textContent = profileEditJobInput.value;
+    closePopup(popupEdit)
 }
 
+const closePopupEdit = () =>  {
+  closePopup(popupEdit)
+}
 
-const handleAddButtonClick = () => {
-    add.classList.add('add_opened');
+const addPlaceOpen = () => {
+    openPopup(popupAdd)
 } /* функция c добавлением булевого модификатора*/
 
-const handleСloseAddButtonClick = () => {
-    add.classList.remove('add_opened');
+const addPlaceSave = () => {
+    closePopup(popupAdd)
 } /* функция закрытия*/
 
 
 
-formElement.addEventListener('submit', handleFormElementSubmit);
-buttonAbout.addEventListener('click', handleAboutButtonClick);
-buttonClose.addEventListener('click', closePopup);
+profileEditForm.addEventListener('submit', profileEditSaveHandler);
+profileEditButton.addEventListener('click', profileEditOpenHandler);
 
-aboutAddButton.addEventListener('click', handleAddButtonClick); /* функция открытия */
-closeAddButton.addEventListener('click', handleСloseAddButtonClick); /* функция закрытия */
+placeAddButton.addEventListener('click', addPlaceOpen); /* функция открытия */
+popupAddSaveButton.addEventListener('click', addPlaceSave); /* функция закрытия */
+
 
 ///////////////////////////////////////////////////////////////////
 
@@ -81,47 +107,66 @@ const initialCards = [
     }
   ]; 
 
-  const cardsListContainer = document.querySelector('.cards'); /* нахожу контейнер куда рендерить */
-  const form = document.querySelector('.add_form'); /* нахожу форму */
-  const template = document.getElementById('cards__template').content;
-  
-  const handleDelete = (evt) => {
-      evt.target.closest('.cards__cell').remove();
-  }
-  
-  
-  
-  
-  const renderItem = (title, link) => {
-      const newItemElement = template.cloneNode(true); /* клонирую форму */
-      const newItemTitle = newItemElement.querySelector('.cards__description');
-      newItemTitle.textContent = title;
-      const newItemImage = newItemElement.querySelector('.cards__item');
-      newItemImage.src = link;
-      newItemImage.alt = title;
-  
-      const deleteButton = newItemElement.querySelector('.cards__delete');  /* кнопки */
-      // const editButton = newItemElement.querySelector('.button__edit');
-      // const dublicateButton = newItemElement.querySelector('.button__dublicate');
-      deleteButton.addEventListener('click', handleDelete)
-  
-  
-      cardsListContainer.append(newItemElement)
-  }  /* создает элемент, стрелочная функция */
-  
-  
-  
-  initialCards.forEach((card)=> {
-      renderItem(card.name, card.link)
-  
-  }) /* функция которая должна что-то добавлять на страницу */
+const cardsListContainer = document.querySelector('.cards'); /* нахожу контейнер куда рендерить */
+const placeCardTemplate = document.getElementById('cards__template').content;
+
+const placeDeleteHandler = (evt) => {
+    evt.target.closest('.cards__cell').remove();
+}
+
+const openPopupImage = (title, link) => {
+  popupImageImg.src = link; /* вставляем ссылку */
+  popupImageImg.alt = title; /* вставляем описание */
+  nameImgClicked.textContent = title;
+  openPopup(popupImage);
+}
+
+
+const getItemElement = (title, link) => {
+    const newItemElement = placeCardTemplate.cloneNode(true); /* клонирую карточку */
+
+    const newItemTitle = newItemElement.querySelector('.cards__description'); /* берем заголовок */
+    newItemTitle.textContent = title;  /* вставляем в карточку заголовок переданный в аргументах */
+
+    const newItemImage = newItemElement.querySelector('.cards__item'); /* берем картинку */
+    newItemImage.src = link; /* вставляем ссылку */
+    newItemImage.alt = title; /* вставляем описание */
+    newItemImage.addEventListener('click', () => { openPopupImage(title, link)})
+
+    const deleteButton = newItemElement.querySelector('.cards__delete');  /* кнопка удаления */
+    deleteButton.addEventListener('click', placeDeleteHandler)
+
+    const likeButton = newItemElement.querySelector('.cards__button'); /* кнопка лайка */
+    likeButton.addEventListener("click", (event) => {
+      event.target.classList.toggle('cards__button-active');
+    });
+
+
+    return newItemElement;
+}  /* создает элемент, стрелочная функция которая принимает в себя заголовок и ссылку */
+
+const generatePlaceCard = (title, link) => {
+  const newItem = getItemElement(title, link) 
+  cardsListContainer.prepend(newItem)  /* вставляем в начало контейнера */
+}
+
+initialCards.forEach((place)=> {  /* пробегаемся по массиву мест и генерируем карточки  */
+  generatePlaceCard(place.name, place.link)
+})
 
 
 
-
-form.addEventListener('submit', (evt) => {
+const addPlaceSaveHandler = (evt) => {
   evt.preventDefault();
   const title = evt.target.title.value;
-  renderItem(cardsListContainer, title);
+  const link = evt.target.link.value;
+  if (title, link) {
+    generatePlaceCard(title, link);
+  }
   evt.target.title.value = '';
-})
+  evt.target.link.value = '';
+};
+
+addPlaceForm.addEventListener('submit', addPlaceSaveHandler)
+
+///////////////////////////////////////////////////////////////////
