@@ -17,9 +17,9 @@ const popupImageImg = popupImage.querySelector('.popup__img')
 const nameImgClicked = popupImage.querySelector('.popup__figcaption'); /* выделяем заголовок попапа */
 
 
-let profileEditForm = document.querySelector('.popup__input-container');
-let profileEditNameInput = document.querySelector('.popup__form_input_name');
-let profileEditJobInput = document.querySelector('.popup__form_input_job');
+const profileEditForm = document.querySelector('.popup__input-container');
+const profileEditNameInput = document.querySelector('.popup__form_input_name');
+const profileEditJobInput = document.querySelector('.popup__form_input_job');
 
 const addPlaceForm = document.querySelector('.popup__input-add'); /* нахожу форму */
 
@@ -44,13 +44,13 @@ allPopups.forEach((popup) => { /* пробегаемся по списку по�
   }
 })
 
-const profileEditOpenHandler = () => {
+const openProfilePopup = () => {
     profileEditNameInput.value = profileTitle.textContent;
     profileEditJobInput.value = profileDescription.textContent;
     openPopup(popupEdit)
 }
 
-const profileEditSaveHandler = (evt) => {
+const handleProfileFormSubmit = (evt) => {
     evt.preventDefault();
     profileTitle.textContent = profileEditNameInput.value; /* добавляем его к инпуту */
     profileDescription.textContent = profileEditJobInput.value;
@@ -61,21 +61,18 @@ const closePopupEdit = () =>  {
   closePopup(popupEdit)
 }
 
-const addPlaceOpen = () => {
+const OpenAddPlace = () => {
     openPopup(popupAdd)
 } /* функция c добавлением булевого модификатора*/
 
-const addPlaceSave = () => {
-    closePopup(popupAdd)
-} /* функция закрытия*/
 
 
 
-profileEditForm.addEventListener('submit', profileEditSaveHandler);
-profileEditButton.addEventListener('click', profileEditOpenHandler);
 
-placeAddButton.addEventListener('click', addPlaceOpen); /* функция открытия */
-popupAddSaveButton.addEventListener('click', addPlaceSave); /* функция закрытия */
+profileEditForm.addEventListener('submit', handleProfileFormSubmit);
+profileEditButton.addEventListener('click', openProfilePopup);
+
+placeAddButton.addEventListener('click', OpenAddPlace); /* функция открытия */
 
 
 ///////////////////////////////////////////////////////////////////
@@ -110,7 +107,7 @@ const initialCards = [
 const cardsListContainer = document.querySelector('.cards'); /* нахожу контейнер куда рендерить */
 const placeCardTemplate = document.getElementById('cards__template').content;
 
-const placeDeleteHandler = (evt) => {
+const deleteCard = (evt) => {
     evt.target.closest('.cards__cell').remove();
 }
 
@@ -134,7 +131,7 @@ const getItemElement = (title, link) => {
     newItemImage.addEventListener('click', () => { openPopupImage(title, link)})
 
     const deleteButton = newItemElement.querySelector('.cards__delete');  /* кнопка удаления */
-    deleteButton.addEventListener('click', placeDeleteHandler)
+    deleteButton.addEventListener('click', deleteCard)
 
     const likeButton = newItemElement.querySelector('.cards__button'); /* кнопка лайка */
     likeButton.addEventListener("click", (event) => {
@@ -156,17 +153,17 @@ initialCards.forEach((place)=> {  /* пробегаемся по массиву 
 
 
 
-const addPlaceSaveHandler = (evt) => {
+const addNewCard = (evt) => {
   evt.preventDefault();
   const title = evt.target.title.value;
   const link = evt.target.link.value;
   if (title, link) {
     generatePlaceCard(title, link);
   }
-  evt.target.title.value = '';
-  evt.target.link.value = '';
-};
+  evt.target.reset();
 
-addPlaceForm.addEventListener('submit', addPlaceSaveHandler)
+}
+
+addPlaceForm.addEventListener('submit', addNewCard)
 
 ///////////////////////////////////////////////////////////////////
