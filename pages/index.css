@@ -41,30 +41,9 @@
 
 
 
-@import url(../blocks/add/add.css);
-@import url(../blocks/add/_opened/add_opened.css);
-@import url(../blocks/add/__close/add__close.css);
-@import url(../blocks/add/__input-container/add__input-container.css);
-@import url(../blocks/add/__container/add__container.css);
-@import url(../blocks/add/__header/add__header.css);
-@import url(../blocks/add/__form/add__form.css);
-@import url(../blocks/add/__save/add__save.css);
-
-@import url(../blocks/add_form/add_form.css);
-@import url(../blocks/add_form/__input/add_form__input.css);
-@import url(../blocks/add_form/__button/add_form__button.css);
-
-
-
 @import url(../blocks/items/items.css);
 
 
-@import url(../blocks/todo_item/todo_item.css);
-@import url(../blocks/todo_item/__header/todo_item__header.css);
-
-@import url(../blocks/add_form/__button/add_form__button.css);
-@import url(../blocks/add_form/__input/add_form__input.css);
-@import url(../blocks/add_form/add_form.css);
 
 @import url(../blocks/buttons/__delete/button__delete.css);
 @import url(../blocks/buttons/__dublicate/button__duplicate.css);
@@ -73,6 +52,5 @@
 @import url(../blocks/buttons/buttons.css);
 
 
-@import url(../blocks/image/__close/image__close.css);
 @import url(../blocks/image/__container/popup_image__container.css);
 
