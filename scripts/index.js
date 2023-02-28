@@ -57,7 +57,7 @@ const handleProfileFormSubmit = (evt) => {
 
 
 
-const OpenAddPlace = () => {
+const openAddPlace = () => {
   openPopup(popupAdd)
 } /* функция c добавлением булевого модификатора*/
 
@@ -70,7 +70,7 @@ const closePopupEdit = () => {
 profileEditForm.addEventListener('submit', handleProfileFormSubmit);
 profileEditButton.addEventListener('click', openProfilePopup);
 
-placeAddButton.addEventListener('click', OpenAddPlace); /* функция открытия */
+placeAddButton.addEventListener('click', openAddPlace); /* функция открытия */
 
 ///////////////////////////////////////////////////////////////////
 
