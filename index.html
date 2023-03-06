@@ -53,8 +53,15 @@
         <button class="popup__close" type="button"></button>
         <h2 class="popup__header">Редактировать профиль</h2>
         <form class="popup__input-container" name="form">
-          <input type="text" name="input name" class="popup__form popup__form_input_name">
-          <input type="text" name="input job" class="popup__form popup__form_input_job">
+          <div class="popup__section">
+          <input type="text" name="input name" class="popup__form popup__form_input_name" required minlength="2" maxlength="40">
+          <span class="popup__input-error popup__input-error_active" id="input-error"></span>
+         </div>
+         <div class="popup__section">
+          <input type="text" name="input job" class="popup__form popup__form_input_job" required minlength="2" maxlength="200">
+          <span class="popup__input-error popup__input-error_active" id="input-error"></span>
+
+        </div>
           <button class="popup__save" type="submit">Сохранить</button>
         </form>
       </div>
@@ -65,8 +72,13 @@
         <button class="popup__close" type="button"></button>
         <h2 class="popup__header">Новое место</h2>
         <form class="popup__input-add" name="form">
-          <input type="text" name="title" placeholder="Название" class="popup__form popup__form_input_name">
+          <div class="popup__section">
+            <input type="text" name="title" placeholder="Название" class="popup__form popup__form_input_name">
+            <span class="popup__input-error popup__input-error_active" id="input-error"></span>
+          </div>
+
           <input type="text" name="link" placeholder="Ссылка на картинку" class="popup__form popup__form_input_link">
+          <span class="popup__input-error popup__input-error_active" id="sign-in-email-error"></span>
           <button class="popup__save" type="submit">Создать</button>
         </form>
       </div>

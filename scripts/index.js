@@ -18,7 +18,7 @@ const nameImgClicked = popupImage.querySelector('.popup__figcaption'); /* выд
 
 
 const profileEditForm = document.querySelector('.popup__input-container');  /* нахожу форму попапа 1 */
-const profileEditNameInput = document.querySelector('.popup__form_input_name');
+const profileEditNameInput = document.querySelector('.popup__form_input_name'); /* нахожу первый(1) инпут */
 const profileEditJobInput = document.querySelector('.popup__form_input_job');
 
 const addPlaceForm = document.querySelector('.popup__input-add'); /* нахожу форму попапа 2 */
@@ -158,9 +158,55 @@ const addNewCard = (evt) => {
     generatePlaceCard(title, link);
   }
   evt.target.reset()
-  closePopup(popupAdd) 
+  closePopup(popupAdd)
 };
 
 addPlaceForm.addEventListener('submit', addNewCard)
 
 ///////////////////////////////////////////////////////////////////
+/* валидации */
+
+
+const form = document.querySelector('popup__input-container'); /* какую форму валидируем в той и ищем кнопку */
+
+const submitElement = document.querySelector('.popup__save'); /* находим кнопку 56:50 */
+
+const inputs = document.querySelectorAll('.popup__form')
+inputs.forEach(inputElement => {
+  inputElement.addEventListener('input', () => {
+    const isValid = inputElement.validity.valid;
+    const inputSectionElement = inputElement.parentNode;
+    const errorElement = inputSectionElement.querySelector('.popup__input-error');
+    if (isValid) {
+      errorElement.innerText = '';
+      errorElement.classList.remove('popup__input-error_active');
+
+    } else {
+      errorElement.innerText = inputElement.validationMessage;
+      errorElement.classList.add('popup__input-error_active');
+    }
+    console.log(inputElement.validationMessage);
+
+  });
+})
+
+let formIaValid = true;
+for (let i = 0; i < inputs.length; i++) {
+  const inputElement = inputs[i];
+  const isValid = inputElement.validity.valid; /* если в форме не валидные данные */
+  if (!isValid) { /* если состояние валидное тогда все ок */
+    formIaValid = false;
+    break
+  }
+}
+
+
+if (formIaValid) {
+  submitElement.removeAttribute('disabled');
+  submitElement.classList.remove('popup__save_inactive');
+} else {
+  submitElement.setAttribute('disabled', 'true');
+  submitElement.classList.add('popup__save_inactive');
+}
+
+  

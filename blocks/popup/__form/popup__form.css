@@ -11,10 +11,16 @@
 }
 
 
+
 .popup__form:first-child {
     margin-top: 40px;
 }
 
+.popup__form_invalid {
+    border: 1px solid #e53e3e;
+    color: #e53e3e;
+    outline: none;
+} 
 
 @media only screen and (max-width: 425px) {
     .popup__form {
