@@ -1,6 +1,3 @@
-
-
-
 const profileEditButton = document.querySelector('.profile__edit-button');
 const popupEdit = document.querySelector('.popup_edit');
 
@@ -17,11 +14,11 @@ const popupImageImg = popupImage.querySelector('.popup__img')
 const nameImgClicked = popupImage.querySelector('.popup__figcaption'); /* выделяем заголовок попапа */
 
 
-const profileEditForm = document.querySelector('.popup__input-container');  /* нахожу форму попапа 1 */
-const profileEditNameInput = document.querySelector('.popup__form_input_name'); /* нахожу первый(1) инпут */
+const profileEditForm = document.querySelector('.popup__container');  /* нахожу форму попапа 1 */
+const profileEditNameInput = document.querySelector('.popup__form_input_name');
 const profileEditJobInput = document.querySelector('.popup__form_input_job');
 
-const addPlaceForm = document.querySelector('.popup__input-add'); /* нахожу форму попапа 2 */
+const addPlaceForm = document.querySelector('.form'); /* нахожу форму попапа 2 */
 
 
 const allPopups = document.querySelectorAll('.popup') /* нашли все попапы */
@@ -158,7 +155,7 @@ const addNewCard = (evt) => {
     generatePlaceCard(title, link);
   }
   evt.target.reset()
-  closePopup(popupAdd)
+  closePopup(popupAdd) 
 };
 
 addPlaceForm.addEventListener('submit', addNewCard)
@@ -167,7 +164,7 @@ addPlaceForm.addEventListener('submit', addNewCard)
 /* валидации */
 
 
-const form = document.querySelector('popup__input-container'); /* какую форму валидируем в той и ищем кнопку */
+const form = document.querySelector('form'); /* какую форму валидируем в той и ищем кнопку */
 
 const submitElement = document.querySelector('.popup__save'); /* находим кнопку 56:50 */
 
@@ -185,7 +182,6 @@ inputs.forEach(inputElement => {
       errorElement.innerText = inputElement.validationMessage;
       errorElement.classList.add('popup__input-error_active');
     }
-    console.log(inputElement.validationMessage);
 
   });
 })
@@ -209,4 +205,4 @@ if (formIaValid) {
   submitElement.classList.add('popup__save_inactive');
 }
 
-inprogress
+  
