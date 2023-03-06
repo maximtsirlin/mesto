@@ -1,4 +1,4 @@
-.popup__form {
+.form__input {
     margin-top: 22px;
     border: none;
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
@@ -12,23 +12,23 @@
 
 
 
-.popup__form:first-child {
+.form__input:first-child {
     margin-top: 40px;
 }
 
-.popup__form_invalid {
+.form__input_invalid {
     border: 1px solid #e53e3e;
     color: #e53e3e;
     outline: none;
 } 
 
 @media only screen and (max-width: 425px) {
-    .popup__form {
+    .form__input {
         margin-top: 20px;
         width: 92%;
     }
 
-    .popup__form:first-child {
+    .form__input:first-child {
         margin-top: 32px;
     }
 

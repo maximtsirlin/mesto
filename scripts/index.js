@@ -7,18 +7,18 @@ const profileDescription = document.querySelector('.profile__description');
 const placeAddButton = document.querySelector('.profile__add-button')
 
 const popupAdd = document.querySelector('.popup_add');
-const popupAddSaveButton = popupAdd.querySelector('.popup__save'); /* выделяем кнопку создать */
+const popupAddSaveButton = popupAdd.querySelector('.form__save'); /* выделяем кнопку создать */
 
 const popupImage = document.querySelector('.popup_image')
 const popupImageImg = popupImage.querySelector('.popup__img')
 const nameImgClicked = popupImage.querySelector('.popup__figcaption'); /* выделяем заголовок попапа */
 
 
-const profileEditForm = document.querySelector('.popup__container');  /* нахожу форму попапа 1 */
-const profileEditNameInput = document.querySelector('.popup__form_input_name');
-const profileEditJobInput = document.querySelector('.popup__form_input_job');
+const profileEditForm = document.querySelector('.form');  /* нахожу форму попапа 1 */
+const profileEditNameInput = document.querySelector('.form__input_name');
+const profileEditJobInput = document.querySelector('.form__input_job');
 
-const addPlaceForm = document.querySelector('.form'); /* нахожу форму попапа 2 */
+const addPlaceForm = document.querySelector('.popup_add'); /* нахожу форму попапа 2 */
 
 
 const allPopups = document.querySelectorAll('.popup') /* нашли все попапы */
@@ -166,21 +166,21 @@ addPlaceForm.addEventListener('submit', addNewCard)
 
 const form = document.querySelector('form'); /* какую форму валидируем в той и ищем кнопку */
 
-const submitElement = document.querySelector('.popup__save'); /* находим кнопку 56:50 */
+const submitElement = document.querySelector('.form__save'); /* находим кнопку 56:50 */
 
-const inputs = document.querySelectorAll('.popup__form')
+const inputs = document.querySelectorAll('.form__input')
 inputs.forEach(inputElement => {
   inputElement.addEventListener('input', () => {
     const isValid = inputElement.validity.valid;
     const inputSectionElement = inputElement.parentNode;
-    const errorElement = inputSectionElement.querySelector('.popup__input-error');
+    const errorElement = inputSectionElement.querySelector('.form__input-error');
     if (isValid) {
       errorElement.innerText = '';
-      errorElement.classList.remove('popup__input-error_active');
+      errorElement.classList.remove('form__input-error_active');
 
     } else {
       errorElement.innerText = inputElement.validationMessage;
-      errorElement.classList.add('popup__input-error_active');
+      errorElement.classList.add('form__input-error_active');
     }
 
   });
@@ -199,10 +199,10 @@ for (let i = 0; i < inputs.length; i++) {
 
 if (formIaValid) {
   submitElement.removeAttribute('disabled');
-  submitElement.classList.remove('popup__save_inactive');
+  submitElement.classList.remove('form__save_inactive');
 } else {
   submitElement.setAttribute('disabled', 'true');
-  submitElement.classList.add('popup__save_inactive');
+  submitElement.classList.add('form__save_inactive');
 }
 
   
