@@ -166,9 +166,9 @@ addPlaceForm.addEventListener('submit', addNewCard)
 
 const form = document.querySelector('form'); /* какую форму валидируем в той и ищем кнопку */
 
-const submitElement = document.querySelector('.form__save'); /* находим кнопку 56:50 */
+const submitElement = form.querySelector('.form__save'); /* находим кнопку 56:50 */
 
-const inputs = document.querySelectorAll('.form__input')
+const inputs = Array.from(form.querySelectorAll('.form__input'));
 inputs.forEach(inputElement => {
   inputElement.addEventListener('input', () => {
     const isValid = inputElement.validity.valid;
@@ -182,27 +182,23 @@ inputs.forEach(inputElement => {
       errorElement.innerText = inputElement.validationMessage;
       errorElement.classList.add('form__input-error_active');
     }
-
+    toggleButtonState(inputs, submitElement);
   });
 })
 
-let formIaValid = true;
-for (let i = 0; i < inputs.length; i++) {
-  const inputElement = inputs[i];
-  const isValid = inputElement.validity.valid; /* если в форме не валидные данные */
-  if (!isValid) { /* если состояние валидное тогда все ок */
-    formIaValid = false;
-    break
-  }
-}
-
-
-if (formIaValid) {
-  submitElement.removeAttribute('disabled');
-  submitElement.classList.remove('form__save_inactive');
-} else {
-  submitElement.setAttribute('disabled', 'true');
-  submitElement.classList.add('form__save_inactive');
-}
-
+const toggleButtonState = (inputs, submitElement) => {
+  const formIaValid = inputs.every((inputElement) => {
+    return inputElement.validity.valid;
+  });
   
+  if (formIaValid) {
+    submitElement.removeAttribute('disabled');
+    submitElement.classList.remove('form__save_inactive');
+  } else {
+    submitElement.setAttribute('disabled', 'true');
+    submitElement.classList.add('form__save_inactive');
+  }
+};
+
+toggleButtonState(inputs, submitElement);
+
