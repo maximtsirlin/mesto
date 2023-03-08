@@ -24,7 +24,7 @@ const addPlaceForm = document.querySelector('.popup_add'); /* нахожу фо�
 const allPopups = document.querySelectorAll('.popup') /* нашли все попапы */
 
 
-const openPopup = (popup) => {
+const openPopup = (popup) => { /* включает видимость попапа */
   popup.classList.add('popup_opened');
 }
 
@@ -49,7 +49,7 @@ const handleProfileFormSubmit = (evt) => {
   evt.preventDefault();
   profileTitle.textContent = profileEditNameInput.value; /* добавляем его к инпуту */
   profileDescription.textContent = profileEditJobInput.value;
-  closePopup(popupEdit) /* закрытие кнопки сохранить */
+  closePopup(popupEdit) /* закрытие popup */
 }
 
 
@@ -57,11 +57,6 @@ const handleProfileFormSubmit = (evt) => {
 const openAddPlace = () => {
   openPopup(popupAdd)
 } /* функция c добавлением булевого модификатора*/
-
-const closePopupEdit = () => {
-  closePopup(popupEdit)
-}
-
 
 
 profileEditForm.addEventListener('submit', handleProfileFormSubmit);
@@ -102,7 +97,9 @@ const cardsListContainer = document.querySelector('.cards'); /* нахожу к�
 const placeCardTemplate = document.getElementById('cards__template').content;
 
 const deleteCard = (evt) => {
-  evt.target.closest('.cards__cell').remove();
+  const deleteButton = evt.target;
+  const cell = deleteButton.closest('.cards__cell');
+  cell.remove();
 }
 
 const openPopupImage = (title, link) => {
@@ -114,7 +111,7 @@ const openPopupImage = (title, link) => {
 
 
 const getItemElement = (title, link) => {
-  const newItemElement = placeCardTemplate.cloneNode(true); /* клонирую карточку */
+  const newItemElement = placeCardTemplate.cloneNode(true); /* клонирую содержимое шаблона чтобы получить новую карточку */
 
   const newItemTitle = newItemElement.querySelector('.cards__description'); /* берем заголовок */
   newItemTitle.textContent = title;  /* вставляем в карточку заголовок переданный в аргументах */
@@ -122,10 +119,10 @@ const getItemElement = (title, link) => {
   const newItemImage = newItemElement.querySelector('.cards__item'); /* берем картинку */
   newItemImage.src = link; /* вставляем ссылку */
   newItemImage.alt = title; /* вставляем описание */
-  newItemImage.addEventListener('click', () => { openPopupImage(title, link) })
+  newItemImage.addEventListener('click', () => { openPopupImage(title, link) }) /* добавляем обработчик нажатия на картинку чтобы он открывал попап с картинкой */
 
   const deleteButton = newItemElement.querySelector('.cards__delete');  /* кнопка удаления */
-  deleteButton.addEventListener('click', deleteCard)
+  deleteButton.addEventListener('click', deleteCard) 
 
   const likeButton = newItemElement.querySelector('.cards__button'); /* кнопка лайка */
   likeButton.addEventListener("click", (event) => {
@@ -165,54 +162,85 @@ addPlaceForm.addEventListener('submit', addNewCard)
 
 
 
-const setEventListeners = (form) => {
-  const submitElement = form.querySelector('.form__save'); /* находим кнопку 56:50 */
-  const inputs = Array.from(form.querySelectorAll('.form__input'));
+const hiddenError = (errorElement, inputErrorClass) => {
+  errorElement.innerText = '';
+  errorElement.classList.remove(inputErrorClass);
+};
+
+const showError = (errorElement, message, inputErrorClass) => {
+  errorElement.innerText = message;
+  errorElement.classList.add(inputErrorClass);
+};
+
+const toggleInputState = (inputElement, options) => {
+  const isValid = inputElement.validity.valid;
+  const inputSectionElement = inputElement.closest(options.inputSectionSelector);
+  const errorElement = inputSectionElement.querySelector(options.inputErrorSelector);
+  if (isValid) {
+    hiddenError(errorElement, options.inputErrorClass);
+  } else {
+    showError(errorElement, inputElement.validationMessage, options.inputErrorClass);
+  }
+};
+
+
+const enableButton = (buttonElement, disabledButtonClass) => {
+  buttonElement.removeAttribute('disabled');
+  buttonElement.classList.remove(disabledButtonClass);
+}; 
+
+
+  const disableButton = (buttonElement, disabledButtonClass) => {
+    buttonElement.setAttribute('disabled', true);
+    buttonElement.classList.add(disabledButtonClass);
+};
+
+
+const toggleButtonState = (inputs, submitElement, disabledButtonClass) => { /* первым аргументом принимает массив инпута а вторым кнопку */
+const formIaValid = inputs.every(inputElement => inputElement.validity.valid);
+
+if (formIaValid) {
+  enableButton(submitElement, disabledButtonClass);
+} else {
+  disableButton(submitElement, disabledButtonClass);
+}
+};
+
+const setEventListeners = (form, options) => {
+  const submitElement = form.querySelector(options.submitSelector); /* находим кнопку 56:50 */
+  const inputs = Array.from(form.querySelectorAll(options.inputSelector));
 
   inputs.forEach(inputElement => {
     inputElement.addEventListener('input', () => {
-      const isValid = inputElement.validity.valid;
-      const inputSectionElement = inputElement.parentNode;
-      const errorElement = inputSectionElement.querySelector('.form__input-error');
-      if (isValid) {
-        errorElement.innerText = '';
-        errorElement.classList.remove('form__input-error_active');
-
-      } else {
-        errorElement.innerText = inputElement.validationMessage;
-        errorElement.classList.add('form__input-error_active');
-      }
-      toggleButtonState(inputs, submitElement);
+      toggleInputState(inputElement, options);
+      toggleButtonState(inputs, submitElement, options.disabledButtonClass);
     });
-  })
-
-  const toggleButtonState = (inputs, submitElement) => {
-    const formIaValid = inputs.every(inputElement => inputElement.validity.valid);
-
-    if (formIaValid) {
-      submitElement.removeAttribute('disabled');
-      submitElement.classList.remove('form__save_inactive');
-    } else {
-      submitElement.setAttribute('disabled', 'true');
-      submitElement.classList.add('form__save_inactive');
-    }
-  };
-
-  toggleButtonState(inputs, submitElement);
+  });
+  
+  toggleButtonState(inputs, submitElement, options.disabledButtonClass);
 };
 
 
 
-const enableValidation = () => {
-  const forms = Array.from(document.querySelectorAll('.form'));
+const enableValidation = (options) => {
+  const forms = Array.from(document.querySelectorAll(options.formSelector));
   forms.forEach(form => {
-    setEventListeners(form);
+    setEventListeners(form, options);
   });
 };
-/* привязываю еще одну форму  */
+/* привязываю еще одну форму */
 
+const options = {
+  formSelector: '.form',
+  submitSelector: '.form__save',
+  inputSelector: '.form__input',
+  inputSectionSelector: '.form__section',
+  inputErrorClass: '.form__input-error_active',
+  inputErrorSelector: '.form__input-error',
+  disabledButtonClass: '.form__save_inactive',
+};
 
-enableValidation();
+enableValidation(options);
 
 
 
