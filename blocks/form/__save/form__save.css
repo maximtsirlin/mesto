@@ -18,8 +18,13 @@
     opacity: 0.8;
 }
 
-
-
+.form__save:disabled {
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 2px;
+    background-color: transparent;
+    opacity: 0.8;
+    color: rgba(0, 0, 0, 0.2);
+}
 
 @media only screen and (max-width: 425px) {
     .form__save {

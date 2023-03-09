@@ -24,6 +24,7 @@ const addPlaceForm = document.querySelector('.popup_add'); /* нахожу фо�
 const allPopups = document.querySelectorAll('.popup') /* нашли все попапы */
 
 
+
 const openPopup = (popup) => { /* включает видимость попапа */
   popup.classList.add('popup_opened');
 }
@@ -32,12 +33,37 @@ const closePopup = (popup) => {
   popup.classList.remove('popup_opened');
 }
 
-allPopups.forEach((popup) => { /* пробегаемся по списку попапов ь */
-  const closeBtn = popup.querySelector('.popup__close')
-  if (closeBtn) {
-    closeBtn.addEventListener('click', () => { closePopup(popup) }) /* навешиваем на кнопку закрытия обработчик */
-  }
+
+
+
+
+allPopups.forEach((popup) => {
+  popup.addEventListener('mousedown', (evt) => {
+    if (evt.target.classList.contains('popup_opened')) {
+      closePopup(popup)
+    }
+    if (evt.target.classList.contains('popup__close')) {
+      closePopup(popup)
+    }
+  })
 })
+
+
+
+
+const closePopupOnEscape = (event) => {
+  if (event.key === 'Escape') {
+    const openedPopup = document.querySelector('.popup_opened');
+    if (openedPopup) {
+      closePopup(openedPopup);
+    }
+  }
+};
+document.addEventListener('keydown', closePopupOnEscape);
+
+
+
+
 
 const openProfilePopup = () => {
   profileEditNameInput.value = profileTitle.textContent;
@@ -59,10 +85,12 @@ const openAddPlace = () => {
 } /* функция c добавлением булевого модификатора*/
 
 
+
 profileEditForm.addEventListener('submit', handleProfileFormSubmit);
 profileEditButton.addEventListener('click', openProfilePopup);
 
 placeAddButton.addEventListener('click', openAddPlace); /* функция открытия */
+
 
 ///////////////////////////////////////////////////////////////////
 
@@ -129,7 +157,6 @@ const getItemElement = (title, link) => {
     event.target.classList.toggle('cards__button-active');
   });
 
-
   return newItemElement;
 }  /* создает элемент, стрелочная функция которая принимает в себя заголовок и ссылку */
 
@@ -162,74 +189,6 @@ addPlaceForm.addEventListener('submit', addNewCard)
 
 
 
-const hiddenError = (errorElement, inputErrorClass) => {
-  errorElement.innerText = '';
-  errorElement.classList.remove(inputErrorClass);
-};
-
-const showError = (errorElement, message, inputErrorClass) => {
-  errorElement.innerText = message;
-  errorElement.classList.add(inputErrorClass);
-};
-
-const toggleInputState = (inputElement, options) => {
-  const isValid = inputElement.validity.valid;
-  const inputSectionElement = inputElement.closest(options.inputSectionSelector);
-  const errorElement = inputSectionElement.querySelector(options.inputErrorSelector);
-  if (isValid) {
-    hiddenError(errorElement, options.inputErrorClass);
-  } else {
-    showError(errorElement, inputElement.validationMessage, options.inputErrorClass);
-  }
-};
-
-
-const enableButton = (buttonElement, disabledButtonClass) => {
-  buttonElement.removeAttribute('disabled');
-  buttonElement.classList.remove(disabledButtonClass);
-}; 
-
-
-  const disableButton = (buttonElement, disabledButtonClass) => {
-    buttonElement.setAttribute('disabled', true);
-    buttonElement.classList.add(disabledButtonClass);
-};
-
-
-const toggleButtonState = (inputs, submitElement, disabledButtonClass) => { /* первым аргументом принимает массив инпута а вторым кнопку */
-const formIaValid = inputs.every(inputElement => inputElement.validity.valid);
-
-if (formIaValid) {
-  enableButton(submitElement, disabledButtonClass);
-} else {
-  disableButton(submitElement, disabledButtonClass);
-}
-};
-
-const setEventListeners = (form, options) => {
-  const submitElement = form.querySelector(options.submitSelector); /* находим кнопку 56:50 */
-  const inputs = Array.from(form.querySelectorAll(options.inputSelector));
-
-  inputs.forEach(inputElement => {
-    inputElement.addEventListener('input', () => {
-      toggleInputState(inputElement, options);
-      toggleButtonState(inputs, submitElement, options.disabledButtonClass);
-    });
-  });
-  
-  toggleButtonState(inputs, submitElement, options.disabledButtonClass);
-};
-
-
-
-const enableValidation = (options) => {
-  const forms = Array.from(document.querySelectorAll(options.formSelector));
-  forms.forEach(form => {
-    setEventListeners(form, options);
-  });
-};
-/* привязываю еще одну форму */
-
 const options = {
   formSelector: '.form',
   submitSelector: '.form__save',
@@ -241,7 +200,6 @@ const options = {
 };
 
 enableValidation(options);
-
 
 
 

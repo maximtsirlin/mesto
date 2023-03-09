@@ -12,15 +12,25 @@
 
 
 
+.form__input:invalid {
+    border-bottom: 1px solid #e53e3e;
+    color: #e53e3e;
+    outline: none;
+} 
+
+.form__input:valid {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    color: black;
+  } 
+
+
+
+
 .form__input:first-child {
     margin-top: 40px;
 }
 
-.form__input_invalid {
-    border: 1px solid #e53e3e;
-    color: #e53e3e;
-    outline: none;
-} 
+
 
 @media only screen and (max-width: 425px) {
     .form__input {
