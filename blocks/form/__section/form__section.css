@@ -1,4 +1,5 @@
 
-.form__section {
-    
+
+.form__section:first-child {
+    margin-top: 34px;
 }

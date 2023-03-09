@@ -62,7 +62,16 @@ const closePopupOnEscape = (event) => {
 document.addEventListener('keydown', closePopupOnEscape);
 
 
+const handleAddPlaceSubmit = (evt) => {
+  evt.preventDefault();
+  const newCardTitle = addPlaceForm.querySelector('.form__input_name').value;
+  const newCardImage = addPlaceForm.querySelector('.form__input_job').value;
+  const newCard = getItemElement(newCardTitle, newCardImage);
+  cardsListContainer.prepend(newCard);
+  closePopup(popupAdd);
+}
 
+addPlaceForm.addEventListener('submit', handleAddPlaceSubmit);
 
 
 const openProfilePopup = () => {
@@ -136,6 +145,8 @@ const openPopupImage = (title, link) => {
   nameImgClicked.textContent = title;
   openPopup(popupImage);
 }
+
+
 
 
 const getItemElement = (title, link) => {

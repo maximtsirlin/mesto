@@ -22,6 +22,7 @@ const hiddenError = (errorElement, inputErrorClass) => {
     }
   };
   
+
   
   const enableButton = (buttonElement, disabledButtonClass) => {
     buttonElement.removeAttribute('disabled');
@@ -60,7 +61,6 @@ const hiddenError = (errorElement, inputErrorClass) => {
   };
   
   
-  
   const enableValidation = (options) => {
     const forms = Array.from(document.querySelectorAll(options.formSelector));
     forms.forEach(form => {
@@ -68,4 +68,4 @@ const hiddenError = (errorElement, inputErrorClass) => {
     });
   };
   
-  
+ 
