@@ -161,7 +161,7 @@ const getItemElement = (title, link) => {
   newItemImage.addEventListener('click', () => { openPopupImage(title, link) }) /* добавляем обработчик нажатия на картинку чтобы он открывал попап с картинкой */
 
   const deleteButton = newItemElement.querySelector('.cards__delete');  /* кнопка удаления */
-  deleteButton.addEventListener('click', deleteCard) 
+  deleteButton.addEventListener('click', deleteCard)
 
   const likeButton = newItemElement.querySelector('.cards__button'); /* кнопка лайка */
   likeButton.addEventListener("click", (event) => {
@@ -204,7 +204,7 @@ const options = {
   formSelector: '.form',
   submitSelector: '.form__save',
   inputSelector: '.form__input',
-  inputInvalidClass:'form__input_invalid',
+  inputInvalidClass: 'form__input_invalid',
   inputSectionSelector: '.form__section',
   inputErrorClass: '.form__input-error_active',
   inputErrorSelector: '.form__input-error',
