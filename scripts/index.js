@@ -17,6 +17,7 @@ const nameImgClicked = popupImage.querySelector('.popup__figcaption'); /* выд
 const profileEditForm = document.querySelector('.form');  /* нахожу форму попапа 1 */
 const profileEditNameInput = document.querySelector('.form__input_name');
 const profileEditJobInput = document.querySelector('.form__input_job');
+const profileEditLinkInput = document.querySelector('.form__input_link');
 
 const addPlaceForm = document.querySelector('.popup_add'); /* нахожу форму попапа 2 */
 
@@ -27,12 +28,21 @@ const allPopups = document.querySelectorAll('.popup') /* нашли все по�
 
 const openPopup = (popup) => { /* включает видимость попапа */
   popup.classList.add('popup_opened');
-}
+  document.addEventListener('keydown', closeByEscBtn);
+
+};
 
 const closePopup = (popup) => {
   popup.classList.remove('popup_opened');
-}
 
+};
+
+const closeByEscBtn = (evt) => {
+  if (evt.key === 'Escape') {
+    const activePopup = document.querySelector('.popup_opened');
+    closePopup(activePopup);
+  };
+};
 
 
 
@@ -51,21 +61,10 @@ allPopups.forEach((popup) => {
 
 
 
-const closePopupOnEscape = (event) => {
-  if (event.key === 'Escape') {
-    const openedPopup = document.querySelector('.popup_opened');
-    if (openedPopup) {
-      closePopup(openedPopup);
-    }
-  }
-};
-document.addEventListener('keydown', closePopupOnEscape);
-
-
 const handleAddPlaceSubmit = (evt) => {
   evt.preventDefault();
   const newCardTitle = addPlaceForm.querySelector('.form__input_name').value;
-  const newCardImage = addPlaceForm.querySelector('.form__input_job').value;
+  const newCardImage = addPlaceForm.querySelector('.form__input_link').value;
   const newCard = getItemElement(newCardTitle, newCardImage);
   cardsListContainer.prepend(newCard);
   closePopup(popupAdd);
@@ -77,6 +76,7 @@ addPlaceForm.addEventListener('submit', handleAddPlaceSubmit);
 const openProfilePopup = () => {
   profileEditNameInput.value = profileTitle.textContent;
   profileEditJobInput.value = profileDescription.textContent;
+  profileEditLinkInput.value = profileTitle.href;
   openPopup(popupEdit) /* открытие edit */
 }
 
@@ -84,6 +84,7 @@ const handleProfileFormSubmit = (evt) => {
   evt.preventDefault();
   profileTitle.textContent = profileEditNameInput.value; /* добавляем его к инпуту */
   profileDescription.textContent = profileEditJobInput.value;
+  profileTitle.href = profileEditLinkInput.value;
   closePopup(popupEdit) /* закрытие popup */
 }
 
@@ -91,6 +92,7 @@ const handleProfileFormSubmit = (evt) => {
 
 const openAddPlace = () => {
   openPopup(popupAdd)
+  popupAddSaveButton.disabled = true;
 } /* функция c добавлением булевого модификатора*/
 
 
