@@ -204,6 +204,7 @@ const options = {
   formSelector: '.form',
   submitSelector: '.form__save',
   inputSelector: '.form__input',
+  inputInvalidClass:'form__input_invalid',
   inputSectionSelector: '.form__section',
   inputErrorClass: '.form__input-error_active',
   inputErrorSelector: '.form__input-error',
@@ -211,7 +212,6 @@ const options = {
 };
 
 enableValidation(options);
-
 
 
 
