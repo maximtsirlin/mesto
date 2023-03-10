@@ -76,7 +76,6 @@ addPlaceForm.addEventListener('submit', handleAddPlaceSubmit);
 const openProfilePopup = () => {
   profileEditNameInput.value = profileTitle.textContent;
   profileEditJobInput.value = profileDescription.textContent;
-  profileEditLinkInput.value = profileTitle.href;
   openPopup(popupEdit) /* открытие edit */
 }
 
@@ -84,7 +83,6 @@ const handleProfileFormSubmit = (evt) => {
   evt.preventDefault();
   profileTitle.textContent = profileEditNameInput.value; /* добавляем его к инпуту */
   profileDescription.textContent = profileEditJobInput.value;
-  profileTitle.href = profileEditLinkInput.value;
   closePopup(popupEdit) /* закрытие popup */
 }
 
