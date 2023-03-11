@@ -34,7 +34,7 @@ const openPopup = (popup) => { /* включает видимость попап
 
 const closePopup = (popup) => {
   popup.classList.remove('popup_opened');
-
+  document.removeEventListener('keydown', closeByEscBtn);
 };
 
 const closeByEscBtn = (evt) => {
@@ -61,16 +61,17 @@ allPopups.forEach((popup) => {
 
 
 
+
+
 const handleAddPlaceSubmit = (evt) => {
   evt.preventDefault();
-  const newCardTitle = addPlaceForm.querySelector('.form__input_name').value;
-  const newCardImage = addPlaceForm.querySelector('.form__input_link').value;
+  const newCardTitle = addPlaceForm.value; /* удалил классы */
+  const newCardImage = addPlaceForm.value;
   const newCard = getItemElement(newCardTitle, newCardImage);
   cardsListContainer.prepend(newCard);
   closePopup(popupAdd);
 }
 
-addPlaceForm.addEventListener('submit', handleAddPlaceSubmit);
 
 
 const openProfilePopup = () => {
@@ -87,10 +88,8 @@ const handleProfileFormSubmit = (evt) => {
 }
 
 
-
 const openAddPlace = () => {
   openPopup(popupAdd)
-  popupAddSaveButton.disabled = true;
 } /* функция c добавлением булевого модификатора*/
 
 
@@ -189,7 +188,8 @@ const addNewCard = (evt) => {
   if (title, link) {
     generatePlaceCard(title, link);
   }
-  evt.target.reset()
+
+  popupAddSaveButton.disabled = true;
   closePopup(popupAdd)
 };
 
