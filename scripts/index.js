@@ -188,7 +188,7 @@ const addNewCard = (evt) => {
   if (title, link) {
     generatePlaceCard(title, link);
   }
-
+  evt.target.reset()
   popupAddSaveButton.disabled = true;
   closePopup(popupAdd)
 };
