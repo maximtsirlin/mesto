@@ -1,3 +1,7 @@
+import {Card} from './Card.js';
+
+
+
 const profileEditButton = document.querySelector('.profile__edit-button');
 const popupEdit = document.querySelector('.popup_edit');
 
@@ -130,13 +134,8 @@ const initialCards = [
 ];
 
 const cardsListContainer = document.querySelector('.cards'); /* нахожу контейнер куда рендерить */
-const placeCardTemplate = document.getElementById('cards__template').content;
 
-const deleteCard = (evt) => {
-  const deleteButton = evt.target;
-  const cell = deleteButton.closest('.cards__cell');
-  cell.remove();
-}
+
 
 const openPopupImage = (title, link) => {
   popupImageImg.src = link; /* вставляем ссылку */
@@ -147,36 +146,14 @@ const openPopupImage = (title, link) => {
 
 
 
-
-const getItemElement = (title, link) => {
-  const newItemElement = placeCardTemplate.cloneNode(true); /* клонирую содержимое шаблона чтобы получить новую карточку */
-
-  const newItemTitle = newItemElement.querySelector('.cards__description'); /* берем заголовок */
-  newItemTitle.textContent = title;  /* вставляем в карточку заголовок переданный в аргументах */
-
-  const newItemImage = newItemElement.querySelector('.cards__item'); /* берем картинку */
-  newItemImage.src = link; /* вставляем ссылку */
-  newItemImage.alt = title; /* вставляем описание */
-  newItemImage.addEventListener('click', () => { openPopupImage(title, link) }) /* добавляем обработчик нажатия на картинку чтобы он открывал попап с картинкой */
-
-  const deleteButton = newItemElement.querySelector('.cards__delete');  /* кнопка удаления */
-  deleteButton.addEventListener('click', deleteCard)
-
-  const likeButton = newItemElement.querySelector('.cards__button'); /* кнопка лайка */
-  likeButton.addEventListener("click", (event) => {
-    event.target.classList.toggle('cards__button-active');
-  });
-
-  return newItemElement;
-}  /* создает элемент, стрелочная функция которая принимает в себя заголовок и ссылку */
-
-const generatePlaceCard = (title, link) => {
-  const newItem = getItemElement(title, link)
+const generatePlaceCard = (place) => {
+  const card = new Card(place, '#cards__template', openPopupImage)
+  const newItem = card.getItemElement();
   cardsListContainer.prepend(newItem)  /* вставляем в начало контейнера */
 }
 
 initialCards.forEach((place) => {  /* пробегаемся по массиву мест и генерируем карточки  */
-  generatePlaceCard(place.name, place.link)
+  generatePlaceCard(place)
 })
 
 
@@ -186,7 +163,8 @@ const addNewCard = (evt) => {
   const title = evt.target.title.value;
   const link = evt.target.link.value;
   if (title, link) {
-    generatePlaceCard(title, link);
+    const place = {name: title, link: link}
+    generatePlaceCard(place);
   }
   evt.target.reset()
   popupAddSaveButton.disabled = true;
@@ -212,6 +190,3 @@ const options = {
 };
 
 enableValidation(options);
-
-
-
