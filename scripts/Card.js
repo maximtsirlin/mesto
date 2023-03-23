@@ -55,10 +55,7 @@ export class Card {
     }
 
 
-
-
-
-
+    
   }
   
 
