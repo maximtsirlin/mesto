@@ -146,14 +146,14 @@ const openPopupImage = (title, link) => {
 
 
 
-const generatePlaceCard = (place) => {
-  const card = new Card(place, '#cards__template', openPopupImage)
-  const newItem = card.getItemElement();
+const generatePlaceCard = (card) => {
+  const newCard = new Card(card, '#cards__template', openPopupImage)
+  const newItem = newCard.getItemElement();
   cardsListContainer.prepend(newItem)  /* вставляем в начало контейнера */
 }
 
-initialCards.forEach((place) => {  /* пробегаемся по массиву мест и генерируем карточки  */
-  generatePlaceCard(place)
+initialCards.forEach((card) => {  /* пробегаемся по массиву мест и генерируем карточки  */
+  generatePlaceCard(card)
 })
 
 
