@@ -1,34 +1,3 @@
-
-
-
-
-const openProfilePopup = () => {
-  profileEditNameInput.value = profileTitle.textContent;
-  profileEditJobInput.value = profileDescription.textContent;
-  openPopup(popupEdit) /* открытие edit */
-}
-
-
-
-const handleProfileFormSubmit = (evt) => {
-  evt.preventDefault();
-  profileTitle.textContent = profileEditNameInput.value; /* добавляем его к инпуту */
-  profileDescription.textContent = profileEditJobInput.value;
-  closePopup(popupEdit) /* закрытие popup */
-}
-
-const openPopupImage = (title, link) => {
-  popupImageImg.src = link; /* вставляем ссылку */
-  popupImageImg.alt = title; /* вставляем описание */
-  nameImgClicked.textContent = title;
-  openPopup(popupImage);
-}
-
-
-
-
-
-
 export default class FormValidator {
   constructor(validationConfig, formElement) {
     this._formSelector = validationConfig.formSelector;
@@ -43,7 +12,7 @@ export default class FormValidator {
     this._buttonElement = this._formElement.querySelector(this._submitButtonSelector);
   }
 
-  _showInputError(inputElement) {
+  #showInputError(inputElement) {
     const errorElement = this._formElement.querySelector(`.${inputElement.id}-error`);
 
     inputElement.classList.add(this._inputErrorClass);
@@ -51,7 +20,7 @@ export default class FormValidator {
     errorElement.classList.add(this._errorClass);
   }
 
-  _hideInputError(inputElement) {
+  #hideInputError(inputElement) {
     const errorElement = this._formElement.querySelector(`.${inputElement.id}-error`);
 
     inputElement.classList.remove(this._inputErrorClass);
@@ -59,7 +28,7 @@ export default class FormValidator {
     errorElement.textContent = '';
   }
 
-  _toggleButtonState() {
+  #toggleButtonState() {
     if (this._hasInvalidInput(this._inputList)) {
       this._buttonElement.disabled = true;
       this._buttonElement.classList.add(this._inactiveButtonClass);
@@ -69,13 +38,13 @@ export default class FormValidator {
     }
   }
 
-  _resetErrorElements() {
+  #resetErrorElements() {
     this._inputList.forEach((inputElement) => {
       this._hideInputError(inputElement);
     });
   }
 
-  _isValid(inputElement) {
+  #isValid(inputElement) {
     if (!inputElement.validity.valid) {
       this._showInputError(inputElement);
     } else {
@@ -83,13 +52,13 @@ export default class FormValidator {
     }
   }
 
-  _hasInvalidInput(inputList) {
+  #hasInvalidInput(inputList) {
     return inputList.some((inputElement) => {
       return !inputElement.validity.valid;
     });
   }
 
-  _setEventListeners() {
+  #setEventListeners() {
     this._toggleButtonState();
     this._inputList.forEach((inputElement) => {
       inputElement.addEventListener('input', () => {
@@ -99,7 +68,7 @@ export default class FormValidator {
     });
   }
 
-  resetValidation() {
+  #resetValidation() {
     this._resetErrorElements();
     this._toggleButtonState();
   }

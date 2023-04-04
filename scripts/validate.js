@@ -1,5 +1,3 @@
-
-
 const hiddenError = (errorElement, inputErrorClass) => {
     errorElement.innerText = '';
     errorElement.classList.remove(inputErrorClass);
