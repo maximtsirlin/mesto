@@ -52,7 +52,7 @@ export class FormValidator {
 
   #toggleButtonState(inputs, submitElement, disabledButtonClass) {
     const formIsValid = inputs.every(inputElement => inputElement.validity.valid);
-
+ 
     if (formIsValid) {
       this.#enableButton(submitElement, disabledButtonClass);
     } else {
