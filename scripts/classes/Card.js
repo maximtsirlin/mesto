@@ -56,10 +56,10 @@ export class Card {
     // вставляем описание
     newItemImage.alt = name;
 
-    this.#addCardListeners(newItemImage, template);
+    this.#addCardListeners(newItemImage, template, name, link);
   }
 
-  #addCardListeners(newItemImage, template) {
+  #addCardListeners(newItemImage, template, name, link) {
     // добавляем обработчик нажатия на картинку чтобы он открывал попап с картинкой
     this.#addListener(newItemImage, 'click', () => { this._openPopup(name, link) });
 
