@@ -74,7 +74,14 @@ export class FormValidator {
     this.#toggleButtonState(inputs, submitElement, options.disabledButtonClass);
   };
 
+  #disableSubmitButton() {
+    const submitElement = this.formElement.querySelector(this.validationConfig.submitSelector);
+    submitElement.disabled = true;
+  }
+
   enableValidation() {
     this.#setEventListeners(this.formElement, this.validationConfig);
+    this.#disableSubmitButton();
+
   }
 }

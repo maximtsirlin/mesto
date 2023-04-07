@@ -14,8 +14,6 @@ const placeAddButton = document.querySelector('.profile__add-button')
 
 const popupAdd = document.querySelector('.popup_add');
 
-// выделяем кнопку создать
-const popupAddSaveButton = popupAdd.querySelector('.form__save');
 
 // нахожу форму попапа 1
 const profileEditForm = document.querySelector('.popup_edit');
@@ -52,17 +50,28 @@ placeAddButton.addEventListener('click', openAddPlacePopup);
 // нахожу контейнер куда рендерить 
 const cardsListContainer = document.querySelector('.cards');
 
+const appendCards = (cards) => {
+  cards.forEach((card) => {
+  cardsListContainer.prepend(card)
+  })
+}
+
 const generatePlaceCard = (card) => {
   const newCard = new Card(card, '#cards__template', openImagePopup)
   const newItem = newCard.getItemElement();
-  // вставляем в начало контейнера 
-  cardsListContainer.prepend(newItem)
+  return newItem;
 }
 
-// Пробегаемся по массиву мест и генерируем карточки  
+// Пробегаемся по массиву мест и генерируем карточки
+const generatedCards = [];
+
+
 initialCards.forEach((card) => {
-  generatePlaceCard(card)
+generatedCards.push(generatePlaceCard(card))
 })
+
+cardsListContainer.prepend(...generatedCards)
+
 
 
 
@@ -73,12 +82,11 @@ const addNewCard = (evt) => {
 
   if (title && link) {
     const card = { name: title, link: link }
-    generatePlaceCard(card);
+    cardsListContainer.prepend(generatePlaceCard(card))
+
   }
 
   evt.target.reset()
-  popupAddSaveButton.disabled = true;
-
   closePopup(popupAdd)
 };
 
