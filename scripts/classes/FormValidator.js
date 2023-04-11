@@ -61,22 +61,21 @@ export class FormValidator {
   };
 
   #setEventListeners(form, options) {
-    const submitElement = form.querySelector(options.submitSelector);
+    this._submitElement = form.querySelector(options.submitSelector);
     const inputs = Array.from(form.querySelectorAll(options.inputSelector));
 
     inputs.forEach(inputElement => {
       inputElement.addEventListener('input', () => {
         this.#toggleInputState(inputElement, options);
-        this.#toggleButtonState(inputs, submitElement, options.disabledButtonClass);
+        this.#toggleButtonState(inputs, this._submitElement, options.disabledButtonClass);
       });
     });
-
-    this.#toggleButtonState(inputs, submitElement, options.disabledButtonClass);
+    
+    this.#toggleButtonState(inputs, this._submitElement, options.disabledButtonClass);
   };
 
   #disableSubmitButton() {
-    const submitElement = this.formElement.querySelector(this.validationConfig.submitSelector);
-    submitElement.disabled = true;
+   this._submitElement.disabled = true;    
   }
 
   enableValidation() {
@@ -84,4 +83,11 @@ export class FormValidator {
     this.#disableSubmitButton();
 
   }
+
+
+    reset() {
+      this.#disableSubmitButton();
+      this.#disableButton();
+    }
+
 }

@@ -74,6 +74,7 @@ export function openEditProfilePopup(name, job) {
 
 export function openAddPlacePopup() {
   openPopup(popupAddPlace);
+  button.disabled = true;
 }
 
 export function openImagePopup(title, link) {
@@ -82,3 +83,5 @@ export function openImagePopup(title, link) {
   nameImgClicked.textContent = title;
   openPopup(popupImage);
 }
+
+

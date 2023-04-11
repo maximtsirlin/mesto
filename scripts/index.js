@@ -23,6 +23,27 @@ const profileEditJobInput = profileEditForm.querySelector('.form__input_job');
 // нахожу форму попапа 2
 const addPlaceForm = document.querySelector('.popup_add');
 
+
+const formsValidationConfig = {
+  submitSelector: '.form__save',
+  inputSelector: '.form__input',
+  inputInvalidClass: 'form__input_invalid',
+  inputSectionSelector: '.form__section',
+  inputErrorClass: '.form__input-error_active',
+  inputErrorSelector: '.form__input-error',
+  disabledButtonClass: '.form__save_inactive',
+};
+
+const profileEditFormElement = document.getElementById('profileEditForm');
+const profileEditFormValidator = new FormValidator(formsValidationConfig, profileEditFormElement);
+profileEditFormValidator.enableValidation();
+
+const addPlaceFormElement = document.getElementById('addPlaceForm');
+const addPlaceFormValidator = new FormValidator(formsValidationConfig, addPlaceFormElement);
+addPlaceFormValidator.enableValidation();
+
+
+
 const handleAddPlaceSubmit = (evt) => {
   evt.preventDefault();
   // удалил классы 
@@ -88,27 +109,13 @@ const addNewCard = (evt) => {
 
   evt.target.reset()
   closePopup(popupAdd)
+  addPlaceFormValidator.reset()
+
 };
 
 // Добавление слушателей на сабмит формы
 profileEditForm.addEventListener('submit', handleProfileFormSubmit);
 addPlaceForm.addEventListener('submit', addNewCard);
 
-const formsValidationConfig = {
-  submitSelector: '.form__save',
-  inputSelector: '.form__input',
-  inputInvalidClass: 'form__input_invalid',
-  inputSectionSelector: '.form__section',
-  inputErrorClass: '.form__input-error_active',
-  inputErrorSelector: '.form__input-error',
-  disabledButtonClass: '.form__save_inactive',
-};
 
-const profileEditFormElement = document.getElementById('profileEditForm');
-const profileEditFormValidator = new FormValidator(formsValidationConfig, profileEditFormElement);
-profileEditFormValidator.enableValidation();
-
-const addPlaceFormElement = document.getElementById('addPlaceForm');
-const addPlaceFormValidator = new FormValidator(formsValidationConfig, addPlaceFormElement);
-addPlaceFormValidator.enableValidation();
 
