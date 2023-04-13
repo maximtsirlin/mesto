@@ -14,6 +14,7 @@ const placeAddButton = document.querySelector('.profile__add-button')
 const popupAdd = document.querySelector('.popup_add');
 
 
+
 // нахожу форму попапа 1
 const profileEditForm = document.querySelector('.popup_edit');
 const profileEditNameInput = profileEditForm.querySelector('.form__input_name');
@@ -81,25 +82,6 @@ const generatePlaceCard = (card) => {
   const newItem = newCard.getItemElement();
   return newItem;
 }
-
-
-
-
-
-const createPopup = (popupSelector) => {
-  const popupElement = document.querySelector(popupSelector);
-  return new Popup(popupElement);
-};
-
-const openPopup = (popup) => {
-  popup.open();
-};
-
-const closePopup = (popup) => {
-  popup.close();
-};
-
-
 
 
 
