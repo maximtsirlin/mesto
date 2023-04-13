@@ -22,7 +22,6 @@ const profileEditJobInput = profileEditForm.querySelector('.form__input_job');
 // нахожу форму попапа 2
 const addPlaceForm = document.querySelector('.popup_add');
 
-
 const formsValidationConfig = {
   submitSelector: '.form__save',
   inputSelector: '.form__input',
