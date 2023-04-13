@@ -1,5 +1,4 @@
-import { Card, FormValidator } from './classes/index.js';
-
+import { Card, FormValidator, Popup } from './classes/index.js';
 import { initialCards } from './const.js';
 import { openEditProfilePopup, openAddPlacePopup, openImagePopup, closePopup, popupTypesSelectors } from './popup.js';
 
@@ -83,6 +82,32 @@ const generatePlaceCard = (card) => {
   return newItem;
 }
 
+
+
+
+
+const createPopup = (popupSelector) => {
+  const popupElement = document.querySelector(popupSelector);
+  return new Popup(popupElement);
+};
+
+const openPopup = (popup) => {
+  popup.open();
+};
+
+const closePopup = (popup) => {
+  popup.close();
+};
+
+
+
+
+
+
+
+
+
+
 // Пробегаемся по массиву мест и генерируем карточки
 const generatedCards = [];
 
@@ -116,6 +141,5 @@ const addNewCard = (evt) => {
 // Добавление слушателей на сабмит формы
 profileEditForm.addEventListener('submit', handleProfileFormSubmit);
 addPlaceForm.addEventListener('submit', addNewCard);
-
 
 
