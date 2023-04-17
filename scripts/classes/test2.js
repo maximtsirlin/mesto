@@ -1,0 +1,1 @@
+import { func, func2 } from "./test";

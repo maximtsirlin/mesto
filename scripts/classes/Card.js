@@ -61,7 +61,7 @@ export class Card {
 
   #addCardListeners(newItemImage, template, name, link) {
     // добавляем обработчик нажатия на картинку чтобы он открывал попап с картинкой
-    this.#addListener(newItemImage, 'click', () => { this._openPopup(name, link) });
+    this.#addListener(newItemImage, 'click', () => { this._openPopup( this._name, this._link) });
 
     // кнопка удаления
     const deleteButton = this.#getElementBySelector(template, '.cards__delete');
@@ -84,10 +84,6 @@ export class Card {
     cell.remove();
   }
 }
-
-
-
-
 
 
 
