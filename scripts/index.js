@@ -1,6 +1,11 @@
 import { Card, FormValidator, PopupWithImage, UserInfo, PopupWithForm, Section } from './classes/index.js';
 import { initialCards } from './const.js';
 const profileEditButton = document.querySelector('.profile__edit-button');
+// const popupCloseButton = document.querySelector('.popup__close');
+
+const popupCloseButtons = document.querySelectorAll('.popup__close');
+
+
 
 // выделяем заголовок
 // const profileTitle = document.querySelector('.profile__title');
@@ -56,10 +61,6 @@ section.render() //Наконец, вызывается renderer функция 
 
 
 
-
-
-
-
 const handlerProfileEdit = (props) => {
   // profileTitle.innerText = props.
   console.log(props);
@@ -85,21 +86,7 @@ const popupWithImage = new PopupWithImage('.popup_image');
 const popupEdit = new PopupWithForm('.popup_edit', handlerProfileEdit);
 const popupAddCard = new PopupWithForm('.popup_add', handlerProfileEdit); //создание экземпляра класса
 
-// function generateCard(item) {
-//   const cardTemplate = document.querySelector('#card-template').content.querySelector('.card');
-//   const cardElement = cardTemplate.cloneNode(true);
-//   cardElement.querySelector('.card__image').src = item.link;
-//   cardElement.querySelector('.card__image').alt = item.name;
-//   cardElement.querySelector('.card__title').textContent = item.name;
-//   return cardElement;
-// }
 
-
-
-
-new Card(cardData, `#cards__template`, () => {
-  return templateSelector();
-})
 
 //создаем экземпляр класса Section  
 const cardsSection = new Section({
@@ -108,10 +95,6 @@ const cardsSection = new Section({
 }, '.cards');
 
 cardsSection.render();
-
-
-
-
 
 
 
@@ -131,9 +114,42 @@ const addPopupWithImageClass = () => {
   popupWithImage.open('image', 'https://translate.google.com/');
 };
 
+
+
+
+
+
+
+
 profileEditButton.addEventListener('click', () => {
   popupEdit.open()
 })
+
+popupCloseButtons.forEach((button) => {
+  button.addEventListener('click', () => {
+    closePopup();
+  });
+});
+
+
+
+popupCloseButtons.forEach((button) => {
+  button.addEventListener('click', () => {
+    // Находим ближайший попап и закрываем его
+    const popup = button.closest('.popup');
+    if (popup) {
+      popup.classList.remove('popup_opened');
+    }
+  });
+});
+
+
+
+
+
+
+
+
 
 
 placeAddButton.addEventListener('click', () => { // повесил слушатель на click
