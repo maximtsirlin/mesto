@@ -1,5 +1,5 @@
 // import PopupWithImage from './classes/PopupWithImage.js';
-import { Card, FormValidator, PopupWithImage } from './classes/index.js';
+import { Card, FormValidator, PopupWithImage, UserInfo } from './classes/index.js';
 import { PopupWithForm } from './classes/PopupWithForm.js';
 import { initialCards } from './const.js';
 // import { openEditProfilePopup, openAddPlacePopup, popupTypesSelectors } from './popup.js'; //  closePopup,
@@ -143,7 +143,21 @@ const generatedCards = [];
 const justButton = document.querySelector('.just__button');
 const popupWithImage = new PopupWithImage('.popup_image');
 const popupEdit = new PopupWithForm('.popup_edit', handlerProfileEdit);
-const popupAddCard = new PopupWithForm('.popup_edit', handlerProfileEdit);
+const popupAddCard = new PopupWithForm('.popup_add', handlerProfileEdit); //создание экземпляра класса
+
+const userInfo = new UserInfo({
+  nameSelector: '.profile__title',
+  infoSelector: '.profile__description',
+});
+
+
+
+const { name, info } = userInfo.getUserInfo();
+document.querySelector('.form__input_name').textContent = name;
+document.querySelector('.form__input_job').textContent = info;
+
+
+
 
 const addPopupWithImageClass = () => {
   popupWithImage.open('image', 'https://translate.google.com/');
@@ -158,6 +172,9 @@ placeAddButton.addEventListener('click', () => { // повесил слушат�
   popupAddCard.open()
 })
 
+// placeAddButton.addEventListener('click', () => { // повесил слушатель на click
+//   getInfo.open()
+// }) 
 
 
 document.querySelectorAll('.form__submit-button').forEach((ev) => {
