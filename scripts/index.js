@@ -1,4 +1,4 @@
-import { Card, FormValidator, PopupWithImage, UserInfo, PopupWithForm } from './classes/index.js';
+import { Card, FormValidator, PopupWithImage, UserInfo, PopupWithForm, Section } from './classes/index.js';
 import { initialCards } from './const.js';
 const profileEditButton = document.querySelector('.profile__edit-button');
 
@@ -55,12 +55,41 @@ const popupWithImage = new PopupWithImage('.popup_image');
 const popupEdit = new PopupWithForm('.popup_edit', handlerProfileEdit);
 const popupAddCard = new PopupWithForm('.popup_add', handlerProfileEdit); //создание экземпляра класса
 
+// function generateCard(item) {
+//   const cardTemplate = document.querySelector('#card-template').content.querySelector('.card');
+//   const cardElement = cardTemplate.cloneNode(true);
+//   cardElement.querySelector('.card__image').src = item.link;
+//   cardElement.querySelector('.card__image').alt = item.name;
+//   cardElement.querySelector('.card__title').textContent = item.name;
+//   return cardElement;
+// }
+
+
+//создаем функцию отрисовки generateCard
+function generateCard(cardData, templateSelector, handleCardClick) {
+  const card = new Card(cardData, templateSelector, handleCardClick);
+  return card.getItemElement();
+}
+
+
+//создаем экземпляр класса Section  
+const cardsSection = new Section({  
+  items: initialCards,
+  renderer: generateCard
+}, '.cards');
+
+cardsSection.render();
+
+
+
+
+
+
+
 const userInfo = new UserInfo({
   nameSelector: '.profile__title',
   infoSelector: '.profile__description',
 });
-
-
 
 const { name, info } = userInfo.getUserInfo();
 document.querySelector('.form__input_name').textContent = name;
