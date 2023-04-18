@@ -30,6 +30,36 @@ const addPlaceFormElement = document.getElementById('addPlaceForm');
 const addPlaceFormValidator = new FormValidator(formsValidationConfig, addPlaceFormElement);
 addPlaceFormValidator.enableValidation();
 
+
+//создаем функцию отрисовки generateCard
+// Этот код, определяет функцию generateCard, которая принимает data параметр и возвращает элемент HTML для карты.
+
+const generateCard = (data) => { 
+  const card = new Card(data, '#cards__template', // Элемент карточки создается с помощью функции-конструктора Card, которая принимает параметр data и template('#cards__template')
+    (name, link) => (cardPopup.open(name, link))) // также функцию обратного вызова, которая (name, link) => (cardPopup.open(name, link)) выполняется при нажатии на карточку.
+  const el = card.getItemElement() // Затем переменной el присваивается возвращаемое значение card.getItemElement(), которое, как я предполагаю, извлекает элемент HTML, созданный конструктором Card
+  return card.getItemElement() // Наконец, el возвращается из generateCard функции.
+}
+
+const section = new Section({items: initialCards, renderer: generateCard}, '.cards') // Section Затем вызывается конструктор с объектом, 
+//содержащим свойства items, initialCards и renderer, а также селектор CSS '.cards'.
+
+// Для функции renderer установлено значение generateCard, которое будет использоваться для рендеринга каждого элемента в items и initialCards.
+
+
+
+section.render() //Наконец, вызывается renderer функция объекта Section, которая должна перебирать каждый элемент 
+//и вызывать generateCard для генерации соответствующих HTML-элементов, а затем добавлять их в DOM под элементом, выбранным селектором CSS '.cards'.
+
+
+
+
+
+
+
+
+
+
 const handlerProfileEdit = (props) => {
   // profileTitle.innerText = props.
   console.log(props);
@@ -65,15 +95,14 @@ const popupAddCard = new PopupWithForm('.popup_add', handlerProfileEdit); //со
 // }
 
 
-//создаем функцию отрисовки generateCard
-function generateCard(cardData, templateSelector, handleCardClick) {
-  const card = new Card(cardData, templateSelector, handleCardClick);
-  return card.getItemElement();
-}
 
+
+new Card(cardData, `#cards__template`, () => {
+  return templateSelector();
+})
 
 //создаем экземпляр класса Section  
-const cardsSection = new Section({  
+const cardsSection = new Section({
   items: initialCards,
   renderer: generateCard
 }, '.cards');
@@ -123,7 +152,7 @@ justButton.addEventListener('click', addPopupWithImageClass);
 
 
 function openImagePopup(title, link) {
-  popupWithImage.open( title, link );
+  popupWithImage.open(title, link);
 
 }
 
