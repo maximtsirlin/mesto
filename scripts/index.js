@@ -3,12 +3,12 @@ import { initialCards } from './const.js';
 const profileEditButton = document.querySelector('.profile__edit-button');
 
 // выделяем заголовок
-const profileTitle = document.querySelector('.profile__title');
-const profileDescription = document.querySelector('.profile__description');
+// const profileTitle = document.querySelector('.profile__title');
+// const profileDescription = document.querySelector('.profile__description');
 
 const placeAddButton = document.querySelector('.profile__add-button')
 
-const popupAdd = document.querySelector('.popup_add'); //FIXME
+// const popupAdd = document.querySelector('.popup_add'); //FIXME
 
 
 
