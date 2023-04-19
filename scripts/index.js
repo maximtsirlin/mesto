@@ -38,63 +38,40 @@ addPlaceFormValidator.enableValidation();
 
 //создаем функцию отрисовки generateCard
 // Этот код, определяет функцию generateCard, которая принимает data параметр и возвращает элемент HTML для карты.
+const cardPopup = new PopupWithImage('.popup_image');
+cardPopup.setEventListeners()
 
-const generateCard = (data) => { 
-  const card = new Card(data, '#cards__template', // Элемент карточки создается с помощью функции-конструктора Card, которая принимает параметр data и template('#cards__template')
-    (name, link) => (cardPopup.open(name, link))) // также функцию обратного вызова, которая (name, link) => (cardPopup.open(name, link)) выполняется при нажатии на карточку.
-  const el = card.getItemElement() // Затем переменной el присваивается возвращаемое значение card.getItemElement(), которое, как я предполагаю, извлекает элемент HTML, созданный конструктором Card
-  return card.getItemElement() // Наконец, el возвращается из generateCard функции.
+const generateCard = (data, popup) => { 
+
+  const card = new Card(data, '#cards__template', (name, link) => (popup.open(name, link)));
+  const el = card.getItemElement();
+  return el;
 }
 
-const section = new Section({items: initialCards, renderer: generateCard}, '.cards') // Section Затем вызывается конструктор с объектом, 
-//содержащим свойства items, initialCards и renderer, а также селектор CSS '.cards'.
+const section = new Section({items: initialCards, renderer: (data) => generateCard(data, cardPopup)}, '.cards');
 
-// Для функции renderer установлено значение generateCard, которое будет использоваться для рендеринга каждого элемента в items и initialCards.
-
-
-
-section.render() //Наконец, вызывается renderer функция объекта Section, которая должна перебирать каждый элемент 
-//и вызывать generateCard для генерации соответствующих HTML-элементов, а затем добавлять их в DOM под элементом, выбранным селектором CSS '.cards'.
-
-
+section.render();
 
 
 
 
 const handlerProfileEdit = (props) => {
-  // profileTitle.innerText = props.
-  console.log(props);
+  userInfo.setUserInfo(props);
+  popupEdit.close()
+}
+
+const handlerAddPost = (props) => {
+  const element = generateCard(props, cardPopup)
+  section.addItem(element);
+  popupAddCard.close()
 }
 
 
-// нахожу контейнер куда рендерить 
-const cardsListContainer = document.querySelector('.cards');
 
-const appendCards = (cards) => {
-  cards.forEach((card) => {
-    cardsListContainer.prepend(card)
-  })
-}
-
-
-// Пробегаемся по массиву мест и генерируем карточки
-const generatedCards = [];
-
-
-const justButton = document.querySelector('.just__button');
-const popupWithImage = new PopupWithImage('.popup_image');
 const popupEdit = new PopupWithForm('.popup_edit', handlerProfileEdit);
-const popupAddCard = new PopupWithForm('.popup_add', handlerProfileEdit); //создание экземпляра класса
-
-
-
-//создаем экземпляр класса Section  
-const cardsSection = new Section({
-  items: initialCards,
-  renderer: generateCard
-}, '.cards');
-
-cardsSection.render();
+const popupAddCard = new PopupWithForm('.popup_add', handlerAddPost); //создание экземпляра класса
+popupEdit.setEventListeners()
+popupAddCard.setEventListeners()
 
 
 
@@ -107,46 +84,12 @@ const { name, info } = userInfo.getUserInfo();
 document.querySelector('.form__input_name').textContent = name;
 document.querySelector('.form__input_job').textContent = info;
 
-
-
-
-const addPopupWithImageClass = () => {
-  popupWithImage.open('image', 'https://translate.google.com/');
-};
-
-
-
-
-
-
-
-
 profileEditButton.addEventListener('click', () => {
+  const data = userInfo.getUserInfo()
+  document.querySelector('.form__input_name').value = data.name
+  document.querySelector('.form__input_job').value = data.info
   popupEdit.open()
 })
-
-popupCloseButtons.forEach((button) => {
-  button.addEventListener('click', () => {
-    closePopup();
-  });
-});
-
-
-
-popupCloseButtons.forEach((button) => {
-  button.addEventListener('click', () => {
-    // Находим ближайший попап и закрываем его
-    const popup = button.closest('.popup');
-    if (popup) {
-      popup.classList.remove('popup_opened');
-    }
-  });
-});
-
-
-
-
-
 
 
 
@@ -157,34 +100,5 @@ placeAddButton.addEventListener('click', () => { // повесил слушат�
 })
 
 
-document.querySelectorAll('.form__submit-button').forEach((ev) => {
-  ev.addEventListener('click', (e) => {
-    e.preventDefault()
-  })
-})
-
-justButton.addEventListener('click', addPopupWithImageClass);
 
 
-
-function openImagePopup(title, link) {
-  popupWithImage.open(title, link);
-
-}
-
-
-
-
-
-const generatePlaceCard = (card) => {
-  const newCard = new Card(card, '#cards__template', openImagePopup)
-  const newItem = newCard.getItemElement();
-  return newItem;
-}
-
-
-initialCards.forEach((card) => {
-  generatedCards.push(generatePlaceCard(card))
-})
-
-cardsListContainer.prepend(...generatedCards)
