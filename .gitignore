@@ -16,3 +16,4 @@ const presets = [
 
 module.exports = { presets };
 node_modules
+dist
