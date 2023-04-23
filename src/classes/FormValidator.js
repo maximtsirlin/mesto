@@ -52,7 +52,7 @@ export class FormValidator {
 
   #toggleButtonState(inputs, submitElement, disabledButtonClass) {
     const formIsValid = inputs.every(inputElement => inputElement.validity.valid);
- 
+
     if (formIsValid) {
       this.#enableButton(submitElement, disabledButtonClass);
     } else {
@@ -70,12 +70,12 @@ export class FormValidator {
         this.#toggleButtonState(inputs, this._submitElement, options.disabledButtonClass);
       });
     });
-    
+
     this.#toggleButtonState(inputs, this._submitElement, options.disabledButtonClass);
   };
 
   #disableSubmitButton() {
-   this._submitElement.disabled = true;    
+    this._submitElement.disabled = true;
   }
 
   enableValidation() {
@@ -85,9 +85,9 @@ export class FormValidator {
   }
 
 
-    reset() {
-      this.#disableSubmitButton();
-      this.#disableButton();
-    }
+  reset() {
+    this.#disableSubmitButton();
+    this.#disableButton();
+  }
 
 }

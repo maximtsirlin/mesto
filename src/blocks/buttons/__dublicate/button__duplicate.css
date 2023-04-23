@@ -1,5 +1,5 @@
 .button__duplicate {
-    background-image: url('/images/Duplicate.svg');
+    background-image: url('/src/images/Duplicate.svg');
     background-position: center;
     background-repeat: no-repeat;
   }
