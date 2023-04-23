@@ -1,4 +1,4 @@
-import {Popup} from './Popup.js';
+import { Popup } from './Popup.js';
 
 export class PopupWithForm extends Popup {
   constructor(popupSelector, submitCallback) {
@@ -23,9 +23,7 @@ export class PopupWithForm extends Popup {
       evt.preventDefault();
       this._submitButton.textContent = 'Сохранение...';
       this._submitCallback(this._getInputValues())
-      
-          this._submitButton.textContent = 'Сохранить';
-
+      this._submitButton.textContent = 'Сохранить';
     });
   }
 
@@ -37,5 +35,4 @@ export class PopupWithForm extends Popup {
 
 
 
-//найти кнопку закрыть у попапа и повесить на нее функцию закрытия при помощи клика мышки и клавиши esc 
 

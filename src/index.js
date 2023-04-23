@@ -1,20 +1,10 @@
 import { Card, FormValidator, PopupWithImage, UserInfo, PopupWithForm, Section } from './classes/index.js';
 import { initialCards } from './const.js';
+import './pages/index.css';
+
+
 const profileEditButton = document.querySelector('.profile__edit-button');
-// const popupCloseButton = document.querySelector('.popup__close');
-
-const popupCloseButtons = document.querySelectorAll('.popup__close');
-
-
-
-// выделяем заголовок
-// const profileTitle = document.querySelector('.profile__title');
-// const profileDescription = document.querySelector('.profile__description');
-
 const placeAddButton = document.querySelector('.profile__add-button')
-
-// const popupAdd = document.querySelector('.popup_add'); //FIXME
-
 
 
 const formsValidationConfig = {
@@ -25,7 +15,7 @@ const formsValidationConfig = {
   inputErrorClass: '.form__input-error_active',
   inputErrorSelector: '.form__input-error',
   disabledButtonClass: '.form__save_inactive',
-}; //??? 
+};
 
 const profileEditFormElement = document.getElementById('profileEditForm');
 const profileEditFormValidator = new FormValidator(formsValidationConfig, profileEditFormElement);
@@ -36,13 +26,10 @@ const addPlaceFormValidator = new FormValidator(formsValidationConfig, addPlaceF
 addPlaceFormValidator.enableValidation();
 
 
-//создаем функцию отрисовки generateCard
-// Этот код, определяет функцию generateCard, которая принимает data параметр и возвращает элемент HTML для карты.
 const cardPopup = new PopupWithImage('.popup_image');
 cardPopup.setEventListeners()
 
 const generateCard = (data, popup) => { 
-
   const card = new Card(data, '#cards__template', (name, link) => (popup.open(name, link)));
   const el = card.getItemElement();
   return el;
@@ -80,6 +67,7 @@ const userInfo = new UserInfo({
   infoSelector: '.profile__description',
 });
 
+
 const { name, info } = userInfo.getUserInfo();
 document.querySelector('.form__input_name').textContent = name;
 document.querySelector('.form__input_job').textContent = info;
@@ -93,12 +81,9 @@ profileEditButton.addEventListener('click', () => {
 
 
 
-
-
 placeAddButton.addEventListener('click', () => { // повесил слушатель на click
   popupAddCard.open()
 })
-
 
 
 

@@ -33,7 +33,7 @@ export class Card {
   }
 
   #addCardListeners(newItemImage, template, name, link) {
-    this.#addListener(newItemImage, 'click', () => { 
+    this.#addListener(newItemImage, 'click', () => {
       this._handleCardClick(name, link);
     });
 

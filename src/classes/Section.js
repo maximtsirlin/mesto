@@ -1,6 +1,3 @@
-
-
-
 export class Section { //Создайте класс Section, который отвечает за отрисовку элементов на странице. Этот класс:
   constructor({ items, renderer }, containerSelector) {
     this._items = items; //Свойство items — это массив данных, которые нужно добавить на страницу при инициализации класса.
