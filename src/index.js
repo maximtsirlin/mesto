@@ -45,14 +45,17 @@ section.render();
 
 
 
+
 const handlerProfileEdit = (props) => {
   userInfo.setUserInfo(props);
+  profileEditFormValidator.disableButton();
   popupEdit.close()
 }
 
 const handlerAddPost = (props) => {
   const element = generateCard(props, cardPopup)
   section.addItem(element);
+  validationForm.disableButton();
   popupAddCard.close()
 }
 

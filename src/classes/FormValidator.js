@@ -2,6 +2,7 @@ export class FormValidator {
   constructor(validationConfig, formElement) {
     this.validationConfig = validationConfig;
     this.formElement = formElement;
+
   }
 
   #hiddenError(errorElement, inputErrorClass) {
@@ -76,18 +77,33 @@ export class FormValidator {
 
   #disableSubmitButton() {
     this._submitElement.disabled = true;
+    this._submitElement.classList.add(this.validationConfig.disabledButtonClass);
   }
+
+
+
+
+  // reset() {
+  //   this.#disableSubmitButton();
+  //   this.#disableButton();
+  // }
+
+  //  disableSubmitButton() {
+  //   this._submitElement.setAttribute('disabled', true);
+  //   this._submitElement.classList.add(this.validationConfig.disabledButtonClass);
+  // }
+
 
   enableValidation() {
     this.#setEventListeners(this.formElement, this.validationConfig);
     this.#disableSubmitButton();
-
   }
 
 
-  reset() {
-    this.#disableSubmitButton();
-    this.#disableButton();
+  disableButton() {
+    const buttonElement = this._submitElement;
+    buttonElement.disabled = true;
+    buttonElement.classList.add(this.validationConfig.disabledButtonClass);
   }
-
 }
+
