@@ -6,6 +6,9 @@ import './pages/index.css';
 const profileEditButton = document.querySelector('.profile__edit-button');
 const placeAddButton = document.querySelector('.profile__add-button')
 
+const nameInput = document.querySelector('.form__input_name');
+const jobInput = document.querySelector('.form__input_job');
+
 
 const formsValidationConfig = {
   submitSelector: '.form__save',
@@ -21,9 +24,9 @@ const profileEditFormElement = document.getElementById('profileEditForm');
 const profileEditFormValidator = new FormValidator(formsValidationConfig, profileEditFormElement);
 profileEditFormValidator.enableValidation();
 
-const addPlaceFormElement = document.getElementById('addPlaceForm');
-const addPlaceFormValidator = new FormValidator(formsValidationConfig, addPlaceFormElement);
-addPlaceFormValidator.enableValidation();
+const formCard = document.getElementById('addPlaceForm');
+const validationForm = new FormValidator(formsValidationConfig, formCard);
+validationForm.enableValidation();
 
 
 const cardPopup = new PopupWithImage('.popup_image');
@@ -69,16 +72,23 @@ const userInfo = new UserInfo({
 
 
 const { name, info } = userInfo.getUserInfo();
-document.querySelector('.form__input_name').textContent = name;
-document.querySelector('.form__input_job').textContent = info;
+// document.querySelector('.form__input_name').textContent = name;
+// document.querySelector('.form__input_job').textContent = info;
+
+// profileEditButton.addEventListener('click', () => {
+//   const data = userInfo.getUserInfo()
+//   document.querySelector('.form__input_name').value = data.name
+//   document.querySelector('.form__input_job').value = data.info
+//   popupEdit.open()
+// })
+
 
 profileEditButton.addEventListener('click', () => {
   const data = userInfo.getUserInfo()
-  document.querySelector('.form__input_name').value = data.name
-  document.querySelector('.form__input_job').value = data.info
+  nameInput.value = data.name
+  jobInput.value = data.info
   popupEdit.open()
 })
-
 
 
 placeAddButton.addEventListener('click', () => { // повесил слушатель на click

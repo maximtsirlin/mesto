@@ -7,8 +7,8 @@ export class Card {
   }
 
   getItemElement() {
-    const placeCardTemplate = this.#getElementBySelector(document, this._templateSelector).content;
-    const newItemElement = placeCardTemplate.cloneNode(true);
+    const placeCardTemplate = this.#getElementBySelector(document, this._templateSelector);
+    const newItemElement = placeCardTemplate.content.firstElementChild.cloneNode(true);
     this.#fillTemplate(newItemElement);
     return newItemElement;
   }
@@ -54,3 +54,4 @@ export class Card {
     cell.remove();
   }
 }
+
