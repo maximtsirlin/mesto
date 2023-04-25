@@ -4,6 +4,7 @@ export class Card {
     this._link = card.link;
     this._templateSelector = templateSelector;
     this._handleCardClick = handleCardClick;
+    this._element = this.getItemElement();
   }
 
   getItemElement() {
@@ -36,10 +37,12 @@ export class Card {
     this.#addListener(newItemImage, 'click', () => {
       this._handleCardClick(name, link);
     });
-
+  
     const deleteButton = this.#getElementBySelector(template, '.cards__delete');
-    this.#addListener(deleteButton, 'click', this.#deleteCard);
-
+    this.#addListener(deleteButton, 'click', () => {
+      this.#deleteCard(deleteButton);
+    });
+  
     const likeButton = this.#getElementBySelector(template, '.cards__button');
     this.#addListener(likeButton, 'click', this.#likeCard);
   }
@@ -48,10 +51,9 @@ export class Card {
     evt.target.classList.toggle('cards__button-active');
   }
 
-  #deleteCard(evt) {
-    const deleteButton = evt.target;
-    const cell = deleteButton.closest('.cards__cell');
-    cell.remove();
+  #deleteCard(deleteButton) {
+    const cardElement = deleteButton.closest('.cards__cell');
+    cardElement.remove();
   }
 }
 
