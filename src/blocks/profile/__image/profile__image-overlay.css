@@ -19,3 +19,11 @@
     opacity: 0.8;
   }
   
+
+
+  @media only screen and (max-width: 768px) {
+    .profile__image-overlay {
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }

@@ -6,9 +6,9 @@ export class FormValidator {
     this._errorElement = formElement.querySelector(validationConfig.inputErrorSelector);
   }
 
-  #hiddenError() {
-    this._errorElement.innerText = '';
-    this._errorElement.classList.remove(this.validationConfig.inputErrorClass);
+  #hiddenError(errorElement) {
+    errorElement.innerText = '';
+    errorElement.classList.remove(this.validationConfig.inputErrorClass);
   };
 
   #hideInputError(inputElement) {
@@ -17,9 +17,9 @@ export class FormValidator {
 
 
 
-  #showError( message) {
-    this._errorElement.innerText = message;
-    this._errorElement.classList.add(this.validationConfig.inputErrorClass);
+  #showError(errorElement, message) {
+    errorElement.innerText = message;
+    errorElement.classList.add(this.validationConfig.inputErrorClass);
   };
 
 
@@ -40,14 +40,14 @@ export class FormValidator {
 
   #toggleInputState(inputElement) {
     const isValid = inputElement.validity.valid;
-    // const inputSectionElement = inputElement.closest(inputSectionSelector);
-    // const errorElement = inputSectionElement.querySelector(inputErrorSelector);
+    const inputSectionElement = inputElement.closest(this.validationConfig.inputSectionSelector);
+    const errorElement = inputSectionElement.querySelector(this.validationConfig.inputErrorSelector);
     if (isValid) {
       this.#hideInputError(inputElement);
-      this.#hiddenError();
+      this.#hiddenError(errorElement);
     } else {
       this.#showInputError(inputElement);
-      this.#showError(inputElement.validationMessage);
+      this.#showError(errorElement, inputElement.validationMessage);
     }
   };
 
