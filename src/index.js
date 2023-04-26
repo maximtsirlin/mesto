@@ -38,25 +38,26 @@ const generateCard = (data, popup) => {
   return el;
 }
 
-// var section;
-// fetch('https://mesto.nomoreparties.co/v1/cohort-64/cards', {
-//   headers: {
-//     authorization: '8b7f26ff-df87-4fed-b7d8-0d5c2987dff7'
-//   }
-// })
-//   .then(res => res.json())
-//   .then((result) => {
-//     console.log(result);
-//     section = new Section({ items: result, renderer: (data) => generateCard(data, cardPopup) }, '.cards');
+//ссылка куда отправляется запрос
+var section;
+fetch('https://mesto.nomoreparties.co/v1/cohort-64/cards', {
+  headers: {
+    authorization: '8b7f26ff-df87-4fed-b7d8-0d5c2987dff7'
+  }
+})
+  .then(res => res.json())
+  .then((result) => {
+    console.log(result);
+    section = new Section({ items: result, renderer: (data) => generateCard(data, cardPopup) }, '.cards');
 
-//     section.render();
-//   });
+    section.render();
+  });
 
 
 
-const section = new Section({ items: initialCards, renderer: (data) => generateCard(data, cardPopup) }, '.cards');
+// const section = new Section({ items: initialCards, renderer: (data) => generateCard(data, cardPopup) }, '.cards');
 
-section.render();
+// section.render();
 
 
 
@@ -65,13 +66,51 @@ section.render();
 const handlerProfileEdit = (props) => {
   userInfo.setUserInfo(props);
   profileEditFormValidator.disableButton();
+
+  fetch('https://mesto.nomoreparties.co/v1/cohort-64/users/me', {
+  method: 'PATCH',
+  headers: {
+    authorization: '8b7f26ff-df87-4fed-b7d8-0d5c2987dff7',
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    name: props.name,
+    about: props.job
+})})
+  .then(res => res.json())
+  .then((result) => {
+    console.log(result);
+    section = new Section({ items: result, renderer: (data) => generateCard(data, cardPopup) }, '.cards');
+
+    section.render();
+  });
+
+  
   popupEdit.close()
 }
+
+
 
 const handlerAddPost = (props) => {
   const element = generateCard(props, cardPopup)
   section.addItem(element);
   validationForm.disableButton();
+
+  fetch('https://mesto.nomoreparties.co/v1/cohort-64/cards', {
+    method: 'POST',
+    headers: {
+      authorization: '8b7f26ff-df87-4fed-b7d8-0d5c2987dff7',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      name: props.name,
+      link: props.link
+  })})
+    .then(res => res.json())
+    .then((result) => {
+      console.log(result);
+    });  
+
   popupAddCard.close()
 }
 
@@ -88,6 +127,19 @@ const userInfo = new UserInfo({
   nameSelector: '.profile__title',
   infoSelector: '.profile__description',
 });
+
+fetch('https://mesto.nomoreparties.co/v1/cohort-64/users/me', {
+  headers: {
+    authorization: '8b7f26ff-df87-4fed-b7d8-0d5c2987dff7'
+  }
+})
+  .then(res => res.json())
+  .then((result) => {
+    userInfo.setUserInfo({name: result.name, job: result.about})
+  });
+
+
+
 
 
 const { name, info } = userInfo.getUserInfo();
