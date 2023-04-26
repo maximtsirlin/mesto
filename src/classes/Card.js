@@ -4,14 +4,12 @@ export class Card {
     this._link = card.link;
     this._templateSelector = templateSelector;
     this._handleCardClick = handleCardClick;
-    this._element = this.getItemElement();
+    this._element = this.#getElementBySelector(document, this._templateSelector).content.firstElementChild.cloneNode(true);
   }
 
   getItemElement() {
-    const placeCardTemplate = this.#getElementBySelector(document, this._templateSelector);
-    const newItemElement = placeCardTemplate.content.firstElementChild.cloneNode(true);
-    this.#fillTemplate(newItemElement);
-    return newItemElement;
+    this.#fillTemplate(this._element);
+    return this._element;
   }
 
   #addListener(element, event, handler) {
@@ -51,9 +49,8 @@ export class Card {
     evt.target.classList.toggle('cards__button-active');
   }
 
-  #deleteCard(deleteButton) {
-    const cardElement = deleteButton.closest('.cards__cell');
-    cardElement.remove();
+  #deleteCard() {
+    this._element.remove();
   }
 }
 

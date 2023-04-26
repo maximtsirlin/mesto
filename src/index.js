@@ -32,13 +32,29 @@ validationForm.enableValidation();
 const cardPopup = new PopupWithImage('.popup_image');
 cardPopup.setEventListeners()
 
-const generateCard = (data, popup) => { 
+const generateCard = (data, popup) => {
   const card = new Card(data, '#cards__template', (name, link) => (popup.open(name, link)));
   const el = card.getItemElement();
   return el;
 }
 
-const section = new Section({items: initialCards, renderer: (data) => generateCard(data, cardPopup)}, '.cards');
+// var section;
+// fetch('https://mesto.nomoreparties.co/v1/cohort-64/cards', {
+//   headers: {
+//     authorization: '8b7f26ff-df87-4fed-b7d8-0d5c2987dff7'
+//   }
+// })
+//   .then(res => res.json())
+//   .then((result) => {
+//     console.log(result);
+//     section = new Section({ items: result, renderer: (data) => generateCard(data, cardPopup) }, '.cards');
+
+//     section.render();
+//   });
+
+
+
+const section = new Section({ items: initialCards, renderer: (data) => generateCard(data, cardPopup) }, '.cards');
 
 section.render();
 
