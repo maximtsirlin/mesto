@@ -1,7 +1,8 @@
-import { Card, FormValidator, PopupWithImage, UserInfo, PopupWithForm, Section } from './classes/index.js';
+import { Card, FormValidator, PopupWithImage, UserInfo, PopupWithForm, Section, PopupWithConfirm, Api } from './classes/index.js';
 import { initialCards } from './const.js';
 import './pages/index.css';
 
+const profileImageButton = document.querySelector('.profile__image-overlay');
 
 const profileEditButton = document.querySelector('.profile__edit-button');
 const placeAddButton = document.querySelector('.profile__add-button')
@@ -19,6 +20,16 @@ const formsValidationConfig = {
   inputErrorSelector: '.form__input-error',
   disabledButtonClass: '.form__save_inactive',
 };
+
+const api = new Api ({
+  url: 'https://mesto.nomoreparties.co/v1/cohort-64/',
+  headers: {
+    authorization: '8b7f26ff-df87-4fed-b7d8-0d5c2987dff7',
+    'content-type': 'application/json'
+  }
+  }
+);
+
 
 const profileEditFormElement = document.getElementById('profileEditForm');
 const profileEditFormValidator = new FormValidator(formsValidationConfig, profileEditFormElement);
@@ -40,20 +51,17 @@ const generateCard = (data, popup) => {
 
 //ссылка куда отправляется запрос
 var section;
-fetch('https://mesto.nomoreparties.co/v1/cohort-64/cards', {
-  headers: {
-    authorization: '8b7f26ff-df87-4fed-b7d8-0d5c2987dff7'
-  }
-})
-  .then(res => res.json())
+
+api.getCards()
   .then((result) => {
     console.log(result);
     section = new Section({ items: result, renderer: (data) => generateCard(data, cardPopup) }, '.cards');
 
     section.render();
-  });
-
-
+  })
+  .catch((err) => {
+    console.log(err); // выведем ошибку в консоль
+  }); 
 
 // const section = new Section({ items: initialCards, renderer: (data) => generateCard(data, cardPopup) }, '.cards');
 
@@ -67,24 +75,11 @@ const handlerProfileEdit = (props) => {
   userInfo.setUserInfo(props);
   profileEditFormValidator.disableButton();
 
-  fetch('https://mesto.nomoreparties.co/v1/cohort-64/users/me', {
-  method: 'PATCH',
-  headers: {
-    authorization: '8b7f26ff-df87-4fed-b7d8-0d5c2987dff7',
-    'Content-Type': 'application/json'
-  },
-  body: JSON.stringify({
+  api.patchProfile({
     name: props.name,
-    about: props.job
-})})
-  .then(res => res.json())
-  .then((result) => {
-    console.log(result);
-    section = new Section({ items: result, renderer: (data) => generateCard(data, cardPopup) }, '.cards');
-
-    section.render();
-  });
-
+    about: props.job,
+    link: props.link
+  })
   
   popupEdit.close()
 }
@@ -96,21 +91,13 @@ const handlerAddPost = (props) => {
   section.addItem(element);
   validationForm.disableButton();
 
-  fetch('https://mesto.nomoreparties.co/v1/cohort-64/cards', {
-    method: 'POST',
-    headers: {
-      authorization: '8b7f26ff-df87-4fed-b7d8-0d5c2987dff7',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      name: props.name,
-      link: props.link
-  })})
-    .then(res => res.json())
-    .then((result) => {
-      console.log(result);
-    });  
-
+  api.postCard({
+    name: props.name,
+    link: props.link
+  })   
+  .catch((err) => {
+    console.log(err); // выведем ошибку в консоль
+  }); 
   popupAddCard.close()
 }
 
@@ -121,24 +108,30 @@ const popupAddCard = new PopupWithForm('.popup_add', handlerAddPost); //созд
 popupEdit.setEventListeners()
 popupAddCard.setEventListeners()
 
+// const popupAddImage = new PopupWithForm('.popup_image');
+
+
+
+// const popupConfirm = new PopupWithConfirm('.profile__image-overlay', handlerProfileEdit);
+// const popupAddCard = new PopupWithConfirm('.popup_add', handlerAddPost); //создание экземпляра класса
+
+
+
 
 
 const userInfo = new UserInfo({
   nameSelector: '.profile__title',
   infoSelector: '.profile__description',
+  avatarSelector: '.profile__image'
 });
 
-fetch('https://mesto.nomoreparties.co/v1/cohort-64/users/me', {
-  headers: {
-    authorization: '8b7f26ff-df87-4fed-b7d8-0d5c2987dff7'
-  }
-})
-  .then(res => res.json())
+api.getProfile()
   .then((result) => {
     userInfo.setUserInfo({name: result.name, job: result.about})
-  });
-
-
+  })
+  .catch((err) => {
+    console.log(err); // выведем ошибку в консоль
+  }); 
 
 
 
@@ -164,6 +157,13 @@ profileEditButton.addEventListener('click', () => {
 
 placeAddButton.addEventListener('click', () => { // повесил слушатель на click
   popupAddCard.open()
+})
+
+
+
+profileImageButton.addEventListener('click', () => {
+  // validatorChangeAvatar.setButtonInactive() 
+  popupAddImage.open()
 })
 
 
