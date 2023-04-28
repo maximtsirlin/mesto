@@ -103,12 +103,37 @@ const handlerAddPost = (props) => {
 
 
 
+
+const handlerAddAvatar = (props) => {
+  const element = generateCard(props)
+  section.addItem(element);
+  validationForm.disableButton();
+
+  api.postCard({
+    name: props.name,
+    link: props.link
+  })   
+  .catch((err) => {
+    console.log(err); // выведем ошибку в консоль
+  }); 
+  popupAddAvatar.close()
+}
+
+
+
+
+
 const popupEdit = new PopupWithForm('.popup_edit', handlerProfileEdit);
 const popupAddCard = new PopupWithForm('.popup_add', handlerAddPost); //создание экземпляра класса
+const popupAddAvatar = new PopupWithForm('.popup_avatar', );
 popupEdit.setEventListeners()
 popupAddCard.setEventListeners()
+popupAddAvatar.setEventListeners()
 
-// const popupAddImage = new PopupWithForm('.popup_image');
+
+
+
+
 
 
 
@@ -163,7 +188,7 @@ placeAddButton.addEventListener('click', () => { // повесил слушат�
 
 profileImageButton.addEventListener('click', () => {
   // validatorChangeAvatar.setButtonInactive() 
-  popupAddImage.open()
+  popupAddAvatar.open()
 })
 
 
