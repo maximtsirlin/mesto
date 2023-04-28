@@ -1,5 +1,5 @@
 export class Card {
-  constructor(card, templateSelector, handleCardClick) {
+  constructor(card, templateSelector, handleCardClick, popupDelete) {
     this._name = card.name;
     this._link = card.link;
     this._likesCounter = card.likes.length;
@@ -7,6 +7,8 @@ export class Card {
     this._handleCardClick = handleCardClick;
     this._element = this.#getElementBySelector(document, this._templateSelector).content.firstElementChild.cloneNode(true);
     this._likes = this.#getElementBySelector(this._element, '.cards__like-counter');
+    this._popupDelete = popupDelete;
+    this.cardID = card.cardID; 
     console.log(this._likesCounter);
   }
 
@@ -41,8 +43,11 @@ export class Card {
     });
   
     const deleteButton = this.#getElementBySelector(template, '.cards__delete');
+    
     this.#addListener(deleteButton, 'click', () => {
-      this.#deleteCard(deleteButton);
+      this._popupDelete.open(this)
+      // this.#deleteCard(deleteButton);
+
     });
   
     const likeButton = this.#getElementBySelector(template, '.cards__button');
@@ -53,7 +58,7 @@ export class Card {
     evt.target.classList.toggle('cards__button-active');
   }
 
-  #deleteCard() {
+  _deleteCard() {
     this._element.remove();
   }
 

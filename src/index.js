@@ -4,6 +4,8 @@ import './pages/index.css';
 
 const profileImageButton = document.querySelector('.profile__image-overlay');
 
+const cardDelete = document.querySelector('.cards__delete');
+
 const profileEditButton = document.querySelector('.profile__edit-button');
 const placeAddButton = document.querySelector('.profile__add-button')
 
@@ -49,7 +51,7 @@ const cardPopup = new PopupWithImage('.popup_image');
 cardPopup.setEventListeners()
 
 const generateCard = (data, popup) => {
-  const card = new Card(data, '#cards__template', (name, link) => (popup.open(name, link)));
+  const card = new Card(data, '#cards__template', (name, link) => (popup.open(name, link)), popupConfirm);
   const el = card.getItemElement();
   return el;
 }
@@ -126,29 +128,26 @@ const handlerAddAvatar = (props) => {
   popupAddAvatar.close()
 }
 
+const handlerConfirm = (props) => {
+  console.log(props);
+}
 
-
+const handlerDelete = () => {
+  popupConfirm.open()
+}
 
 
 const popupEdit = new PopupWithForm('.popup_edit', handlerProfileEdit);
 const popupAddCard = new PopupWithForm('.popup_add', handlerAddPost); //создание экземпляра класса
 const popupAddAvatar = new PopupWithForm('.popup_avatar', handlerAddAvatar);
+const popupConfirm = new PopupWithConfirm('.popup_confirm', handlerConfirm);
 popupEdit.setEventListeners()
 popupAddCard.setEventListeners()
 popupAddAvatar.setEventListeners()
-
-
-
-
-
-
-
+popupConfirm.setEventListeners()
 
 // const popupConfirm = new PopupWithConfirm('.profile__image-overlay', handlerProfileEdit);
 // const popupAddCard = new PopupWithConfirm('.popup_add', handlerAddPost); //создание экземпляра класса
-
-
-
 
 
 const userInfo = new UserInfo({
@@ -156,6 +155,7 @@ const userInfo = new UserInfo({
   infoSelector: '.profile__description',
   avatarSelector: '.profile__image'
 });
+
 
 api.getProfile()
   .then((result) => {
@@ -198,6 +198,12 @@ profileImageButton.addEventListener('click', () => {
   // validatorChangeAvatar.setButtonInactive() 
   popupAddAvatar.open()
 })
+
+
+// cardDelete.addEventListener('click', () => {
+//   // validatorChangeAvatar.setButtonInactive() 
+//   popupConfirm.open()
+// })
 
 
 
