@@ -39,6 +39,11 @@ const formCard = document.getElementById('addPlaceForm');
 const validationForm = new FormValidator(formsValidationConfig, formCard);
 validationForm.enableValidation();
 
+const formAvatar = document.getElementById('addAvatar');
+const validationAvatar = new FormValidator(formsValidationConfig, formAvatar);
+validationAvatar.enableValidation();
+
+
 
 const cardPopup = new PopupWithImage('.popup_image');
 cardPopup.setEventListeners()
@@ -105,14 +110,16 @@ const handlerAddPost = (props) => {
 
 
 const handlerAddAvatar = (props) => {
-  const element = generateCard(props)
-  section.addItem(element);
+
   validationForm.disableButton();
 
-  api.postCard({
-    name: props.name,
+  api.setUserAvatar({
     link: props.link
   })   
+  .then(data => {
+    console.log(data)
+    userInfo.setUserAvatar(data.avatar)
+  })
   .catch((err) => {
     console.log(err); // выведем ошибку в консоль
   }); 
@@ -125,7 +132,7 @@ const handlerAddAvatar = (props) => {
 
 const popupEdit = new PopupWithForm('.popup_edit', handlerProfileEdit);
 const popupAddCard = new PopupWithForm('.popup_add', handlerAddPost); //создание экземпляра класса
-const popupAddAvatar = new PopupWithForm('.popup_avatar', );
+const popupAddAvatar = new PopupWithForm('.popup_avatar', handlerAddAvatar);
 popupEdit.setEventListeners()
 popupAddCard.setEventListeners()
 popupAddAvatar.setEventListeners()
@@ -152,7 +159,8 @@ const userInfo = new UserInfo({
 
 api.getProfile()
   .then((result) => {
-    userInfo.setUserInfo({name: result.name, job: result.about})
+    userInfo.setUserInfo({name: result.name, job: result.about, avatar: result.avatar})
+    console.log(result);
   })
   .catch((err) => {
     console.log(err); // выведем ошибку в консоль

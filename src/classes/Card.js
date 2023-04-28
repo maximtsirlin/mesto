@@ -2,9 +2,12 @@ export class Card {
   constructor(card, templateSelector, handleCardClick) {
     this._name = card.name;
     this._link = card.link;
+    this._likesCounter = card.likes.length;
     this._templateSelector = templateSelector;
     this._handleCardClick = handleCardClick;
     this._element = this.#getElementBySelector(document, this._templateSelector).content.firstElementChild.cloneNode(true);
+    this._likes = this.#getElementBySelector(this._element, '.cards__like-counter');
+    console.log(this._likesCounter);
   }
 
   getItemElement() {
@@ -28,6 +31,7 @@ export class Card {
     const newItemImage = this.#getElementBySelector(template, '.cards__item');
     newItemImage.src = link;
     newItemImage.alt = name;
+    this._likes.textContent = this._likesCounter;
     this.#addCardListeners(newItemImage, template, name, link);
   }
 
@@ -52,5 +56,7 @@ export class Card {
   #deleteCard() {
     this._element.remove();
   }
+
+
 }
 
