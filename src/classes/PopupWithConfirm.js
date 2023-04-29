@@ -22,6 +22,7 @@ export class PopupWithConfirm extends Popup {
             event.preventDefault()
             // this._submitCallback(this)
             this.card._deleteCard()
+            this.close(); // close the popup
         });
     };
 

@@ -2,14 +2,24 @@ export class Card {
   constructor(card, templateSelector, handleCardClick, popupDelete) {
     this._name = card.name;
     this._link = card.link;
-    this._likesCounter = card.likes.length;
     this._templateSelector = templateSelector;
     this._handleCardClick = handleCardClick;
+    this._popupDelete = popupDelete;
+    this.cardID = card.cardID;
+    
+    // проверяем, определено ли свойство likes в объекте card с помощью optional chaining
+    this._likesCounter = card.likes?.length || 0;
+
     this._element = this.#getElementBySelector(document, this._templateSelector).content.firstElementChild.cloneNode(true);
     this._likes = this.#getElementBySelector(this._element, '.cards__like-counter');
-    this._popupDelete = popupDelete;
-    this.cardID = card.cardID; 
-    console.log(this._likesCounter);
+
+    this.#addCardListeners(
+      this.#getElementBySelector(this._element, '.cards__item'),
+      this._element,
+      this._name,
+      this._link
+    );
+
   }
 
   getItemElement() {
@@ -35,6 +45,9 @@ export class Card {
     newItemImage.alt = name;
     this._likes.textContent = this._likesCounter;
     this.#addCardListeners(newItemImage, template, name, link);
+
+
+
   }
 
   #addCardListeners(newItemImage, template, name, link) {
