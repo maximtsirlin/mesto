@@ -50,8 +50,25 @@ validationAvatar.enableValidation();
 const cardPopup = new PopupWithImage('.popup_image');
 cardPopup.setEventListeners()
 
+const handlerDelete = (card) => {
+popupConfirm.open(card)
+}
+
+const handlerLike = (card) => {
+  console.log(card)
+  if (card.isLike) {
+    card.unLikeCard()
+    api.like(card.cardID, false) .then(elen => console.log(elen))
+  } else {
+    console.log('ff');
+    card.likeCard()
+    api.like(card.cardID, true) .then(elen => console.log(elen))
+  }
+}
+
+
 const generateCard = (data, popup) => {
-  const card = new Card(data, '#cards__template', (name, link) => (popup.open(name, link)), popupConfirm);
+  const card = new Card(data, '#cards__template', (name, link) => (popup.open(name, link)), handlerDelete, handlerLike);
   const el = card.getItemElement();
   return el;
 }
@@ -130,11 +147,16 @@ const handlerAddAvatar = (props) => {
 
 const handlerConfirm = (props) => {
   console.log(props);
+  api.deleteCard(props.cardID)
+  .catch((err) => {
+    console.log(err); // выведем ошибку в консоль
+  }); 
+  // props.card._deleteCard()
 }
 
-const handlerDelete = () => {
-  popupConfirm.open()
-}
+// const handlerDelete = () => {
+//   popupConfirm.open()
+// }
 
 
 const popupEdit = new PopupWithForm('.popup_edit', handlerProfileEdit);
