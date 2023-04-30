@@ -23,13 +23,13 @@ const formsValidationConfig = {
   disabledButtonClass: '.form__save_inactive',
 };
 
-const api = new Api ({
+const api = new Api({
   url: 'https://mesto.nomoreparties.co/v1/cohort-64/',
   headers: {
     authorization: '8b7f26ff-df87-4fed-b7d8-0d5c2987dff7',
     'content-type': 'application/json'
   }
-  }
+}
 );
 
 
@@ -51,7 +51,7 @@ const cardPopup = new PopupWithImage('.popup_image');
 cardPopup.setEventListeners()
 
 const handlerDelete = (card) => {
-popupConfirm.open(card)
+  popupConfirm.open(card)
 }
 
 const handlerLike = (card) => {
@@ -91,11 +91,7 @@ api.getCards()
   })
   .catch((err) => {
     console.log(err); // выведем ошибку в консоль
-  }); 
-
-// const section = new Section({ items: initialCards, renderer: (data) => generateCard(data, cardPopup) }, '.cards');
-
-// section.render();
+  });
 
 
 
@@ -110,7 +106,7 @@ const handlerProfileEdit = (props) => {
     about: props.job,
     link: props.link
   })
-  
+
   popupEdit.close()
 }
 
@@ -124,10 +120,10 @@ const handlerAddPost = (props) => {
   api.postCard({
     name: props.name,
     link: props.link
-  })   
-  .catch((err) => {
-    console.log(err); // выведем ошибку в консоль
-  }); 
+  })
+    .catch((err) => {
+      console.log(err); // выведем ошибку в консоль
+    });
   popupAddCard.close()
 }
 
@@ -140,32 +136,26 @@ const handlerAddAvatar = (props) => {
 
   api.setUserAvatar({
     link: props.link
-  })   
-  .then(data => {
-    console.log(data)
-    userInfo.setUserAvatar(data.avatar)
   })
-  .catch((err) => {
-    console.log(err); // выведем ошибку в консоль
-  }); 
+    .then(data => {
+      console.log(data)
+      userInfo.setUserAvatar(data.avatar)
+    })
+    .catch((err) => {
+      console.log(err); // выведем ошибку в консоль
+    });
   popupAddAvatar.close()
 }
 
 const handlerConfirm = (props) => {
   console.log(props);
   api.deleteCard(props.cardID)
-  .catch((err) => {
-    console.log(err); // выведем ошибку в консоль
-  }); 
-  // props.card._deleteCard()
+    .catch((err) => {
+      console.log(err); // выведем ошибку в консоль
+    });
 }
 
 
-
-
-// const handlerDelete = () => {
-//   popupConfirm.open()
-// }
 
 
 const popupEdit = new PopupWithForm('.popup_edit', handlerProfileEdit);
@@ -177,9 +167,6 @@ popupAddCard.setEventListeners()
 popupAddAvatar.setEventListeners()
 popupConfirm.setEventListeners()
 
-// const popupConfirm = new PopupWithConfirm('.profile__image-overlay', handlerProfileEdit);
-// const popupAddCard = new PopupWithConfirm('.popup_add', handlerAddPost); //создание экземпляра класса
-
 
 const userInfo = new UserInfo({
   nameSelector: '.profile__title',
@@ -190,25 +177,17 @@ const userInfo = new UserInfo({
 
 api.getProfile()
   .then((result) => {
-    userInfo.setUserInfo({name: result.name, job: result.about, avatar: result.avatar})
+    userInfo.setUserInfo({ name: result.name, job: result.about, avatar: result.avatar })
     console.log(result);
   })
   .catch((err) => {
     console.log(err); // выведем ошибку в консоль
-  }); 
+  });
 
 
 
 const { name, info } = userInfo.getUserInfo();
-// document.querySelector('.form__input_name').textContent = name;
-// document.querySelector('.form__input_job').textContent = info;
 
-// profileEditButton.addEventListener('click', () => {
-//   const data = userInfo.getUserInfo()
-//   document.querySelector('.form__input_name').value = data.name
-//   document.querySelector('.form__input_job').value = data.info
-//   popupEdit.open()
-// })
 
 
 profileEditButton.addEventListener('click', () => {
@@ -226,12 +205,6 @@ placeAddButton.addEventListener('click', () => { // повесил слушат�
 
 
 profileImageButton.addEventListener('click', () => {
-  // validatorChangeAvatar.setButtonInactive() 
   popupAddAvatar.open()
 })
 
-
-// cardDelete.addEventListener('click', () => {
-//   // validatorChangeAvatar.setButtonInactive() 
-//   popupConfirm.open()
-// })

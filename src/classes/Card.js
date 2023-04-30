@@ -5,13 +5,11 @@ export class Card {
     this._myId = myId
     this._templateSelector = templateSelector;
     this._handleCardClick = handleCardClick;
-<<<<<<< HEAD
-    this._element = this.#getElementBySelector(document, this._templateSelector).content.firstElementChild.cloneNode(true);
-=======
     this._popupDelete = popupDelete;
     this.cardID = card._id;
     this._handlerLike = handlerLike;
-    this.islike = false;
+    this.islike = false
+    console.log(card)
     this._likeArray = card.likes?? [];
     // проверяем, определено ли свойство likes в объекте card с помощью optional chaining
     this._likesCounter = card.likes?.length || 0;
@@ -26,12 +24,13 @@ export class Card {
       this._name,
       this._link
     );
-  }
 
+
+
+  }
   likesCounterUpdate(data) {
     this._likes.textContent = data.length;
   }
-
   _checkUserLike() {
     return this._likeArray.some((item) => item._id === this._myId);
   }
@@ -42,7 +41,6 @@ export class Card {
     } else {
       this.unLikeCard();
     }
->>>>>>> develop
   }
 
   getItemElement() {
@@ -98,11 +96,7 @@ export class Card {
     this.isLike = false;
   }
 
-<<<<<<< HEAD
-  #deleteCard() {
-=======
   _deleteCard() {
->>>>>>> develop
     this._element.remove();
   }
 
