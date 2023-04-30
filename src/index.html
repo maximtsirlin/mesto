@@ -17,13 +17,14 @@
 
     <main class="content">
       <section class="profile">
+        <div class="profile__image-overlay"></div>
         <img src="<%=require('./images/image.jpg')%>" alt="Жак-Ив Кусто аватар" class="profile__image"> 
         <div class="profile__item">
           <div class="profile__form">
-            <h1 class="profile__title">Жак-Ив Кусто</h1>
+            <h1 class="profile__title"></h1>
             <button class="profile__edit-button profile__icon" type="button"></button>
           </div>
-          <p class="profile__description">Исследователь океана</p>
+          <p class="profile__description"></p>
 
         </div>
         <button class="profile__add-button" type="button" aria-label="кнопка"></button>
@@ -37,7 +38,10 @@
           <button class="cards__delete" type="button"></button>
           <div class="cards__form">
             <h2 class="cards__description"></h2>
-            <button class="cards__button" type="button" aria-label="Камчатка лайк"></button>
+            <div>
+              <button class="cards__button" type="button" aria-label="Камчатка лайк"></button>
+              <p class="cards__like-counter">0</p>
+            </div>
           </div>
         </li>
       </template>
@@ -88,6 +92,31 @@
         </form>
       </div>
     </div>
+
+    <div class="popup popup_confirm">
+      <div class="popup__container">
+        <button class="popup__close" type="button"></button>
+        <h2 class="popup__header">Вы уверены?</h2>
+          <button class="form__save" type="submit">Да</button>
+        </form>
+      </div>
+    </div>
+
+
+    <div class="popup popup_avatar">
+      <div class="popup__container">
+        <button class="popup__close" type="button"></button>
+        <h2 class="popup__header">Обновить аватар</h2>
+        <form id="addAvatar" class="form" name="form">
+          <div class="form__section">
+            <input type="url" name="link" placeholder="Ссылка на картинку" class="form__input form__input_link" required>
+            <div class="form__input-error form__input-error_active" id="link"></div>
+          </div>
+          <button class="form__save" type="submit" disabled="true">Сохранить</button>
+        </form>
+      </div>
+    </div>
+
 
     <div class="popup popup_image">
 
