@@ -8,17 +8,18 @@
   <title>Mesto</title>
   <link rel="stylesheet" href="./pages/index.css">
 </head>
+
 <body class="root">
   <div class="page">
     <header class="header">
-      <img src="<%=require('./images/logo.svg')%>" alt="Логотип"> 
+      <img src="<%=require('./images/logo.svg')%>" alt="Логотип">
     </header>
- 
+
 
     <main class="content">
       <section class="profile">
         <div class="profile__image-overlay"></div>
-        <img src="<%=require('./images/image.jpg')%>" alt="Жак-Ив Кусто аватар" class="profile__image"> 
+        <img src="<%=require('./images/image.jpg')%>" alt="Жак-Ив Кусто аватар" class="profile__image">
         <div class="profile__item">
           <div class="profile__form">
             <h1 class="profile__title"></h1>
@@ -60,13 +61,11 @@
         <h2 class="popup__header">Редактировать профиль</h2>
         <form id="profileEditForm" class="form" name="form">
           <div class="form__section">
-            <input type="text" name="name" class="form__input form__input_name" required minlength="2"
-              maxlength="40">
+            <input type="text" name="name" class="form__input form__input_name" required minlength="2" maxlength="40">
             <div class="form__input-error form__input-error_active" id="name"></div>
           </div>
           <div class="form__section">
-            <input type="text" name="job" class="form__input form__input_job" required minlength="2"
-              maxlength="40">
+            <input type="text" name="job" class="form__input form__input_job" required minlength="2" maxlength="40">
             <div class="form__input-error form__input-error_active" id="job"></div>
           </div>
           <button class="form__save" type="submit" disabled="true">Сохранить</button>
@@ -80,12 +79,13 @@
         <h2 class="popup__header">Новое место</h2>
         <form id="addPlaceForm" class="form" name="form">
           <div class="form__section">
-            <input type="text" name="name" placeholder="Название" class="form__input form__input_name" required minlength="2"
-            maxlength="30">
+            <input type="text" name="name" placeholder="Название" class="form__input form__input_name" required
+              minlength="2" maxlength="30">
             <div class="form__input-error form__input-error_active" id="title"></div>
           </div>
           <div class="form__section">
-            <input type="url" name="link" placeholder="Ссылка на картинку" class="form__input form__input_link" required>
+            <input type="url" name="link" placeholder="Ссылка на картинку" class="form__input form__input_link"
+              required>
             <div class="form__input-error form__input-error_active" id="link"></div>
           </div>
           <button class="form__save" type="submit" disabled="true">Создать</button>
@@ -97,7 +97,7 @@
       <div class="popup__container">
         <button class="popup__close" type="button"></button>
         <h2 class="popup__header">Вы уверены?</h2>
-          <button class="form__save" type="submit">Да</button>
+        <button class="form__save" type="submit">Да</button>
       </div>
     </div>
 
@@ -108,7 +108,8 @@
         <h2 class="popup__header">Обновить аватар</h2>
         <form id="addAvatar" class="form" name="form">
           <div class="form__section">
-            <input type="url" name="link" placeholder="Ссылка на картинку" class="form__input form__input_link" required>
+            <input type="url" name="link" placeholder="Ссылка на картинку" class="form__input form__input_link"
+              required>
             <div class="form__input-error form__input-error_active" id="confirm"></div>
           </div>
           <button class="form__save" type="submit" disabled="true">Сохранить</button>
@@ -133,4 +134,5 @@
 </body>
 
 <script type="module" src="./src/index.js"></script>
+
 </html>
