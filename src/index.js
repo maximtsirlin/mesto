@@ -55,20 +55,26 @@ popupConfirm.open(card)
 }
 
 const handlerLike = (card) => {
-  console.log(card)
+  console.log("in handler")
   if (card.isLike) {
-    card.unLikeCard()
-    api.like(card.cardID, false) .then(elen => console.log(elen))
+    api.like(card.cardID, true).then(elem => {
+      card.unLikeCard()
+      card.likesCounterUpdate(elem.likes)
+      console.log("unset like", elem)
+    })
+    console.log("unset like")
   } else {
     console.log('ff');
-    card.likeCard()
-    api.like(card.cardID, true) .then(elen => console.log(elen))
+    api.like(card.cardID, false).then(elem => {
+      card.likeCard()
+      card.likesCounterUpdate(elem.likes)
+    })
   }
 }
 
 
 const generateCard = (data, popup) => {
-  const card = new Card(data, '#cards__template', (name, link) => (popup.open(name, link)), handlerDelete, handlerLike);
+  const card = new Card(data, api._myId, '#cards__template', (name, link) => (popup.open(name, link)), handlerDelete, handlerLike);
   const el = card.getItemElement();
   return el;
 }
@@ -154,6 +160,9 @@ const handlerConfirm = (props) => {
   // props.card._deleteCard()
 }
 
+
+
+
 // const handlerDelete = () => {
 //   popupConfirm.open()
 // }
@@ -226,6 +235,3 @@ profileImageButton.addEventListener('click', () => {
 //   // validatorChangeAvatar.setButtonInactive() 
 //   popupConfirm.open()
 // })
-
-
-

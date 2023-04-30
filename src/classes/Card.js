@@ -1,26 +1,44 @@
 export class Card {
-  constructor(card, templateSelector, handleCardClick, popupDelete, handlerLike) {
+  constructor(card, myId, templateSelector, handleCardClick, popupDelete, handlerLike) {
     this._name = card.name;
     this._link = card.link;
+    this._myId = myId
     this._templateSelector = templateSelector;
     this._handleCardClick = handleCardClick;
     this._popupDelete = popupDelete;
     this.cardID = card._id;
     this._handlerLike = handlerLike;
+    this.islike = false;
+    this._likeArray = card.likes?? [];
     // проверяем, определено ли свойство likes в объекте card с помощью optional chaining
     this._likesCounter = card.likes?.length || 0;
 
     this._element = this.#getElementBySelector(document, this._templateSelector).content.firstElementChild.cloneNode(true);
     this._likes = this.#getElementBySelector(this._element, '.cards__like-counter');
     this._likeButton = this.#getElementBySelector(this._element, '.cards__button');
-
+    this._toggleLikeState()
     this.#addCardListeners(
       this.#getElementBySelector(this._element, '.cards__item'),
       this._element,
       this._name,
       this._link
     );
+  }
 
+  likesCounterUpdate(data) {
+    this._likes.textContent = data.length;
+  }
+
+  _checkUserLike() {
+    return this._likeArray.some((item) => item._id === this._myId);
+  }
+
+  _toggleLikeState() {
+    if (this._checkUserLike()) {
+      this.likeCard();
+    } else {
+      this.unLikeCard();
+    }
   }
 
   getItemElement() {
@@ -60,7 +78,8 @@ export class Card {
       // this.#deleteCard(deleteButton);
     });
     
-    this.#addListener(this._likeButton, 'click',() => {this._handlerLike(this)});
+    this.#addListener(this._likeButton, 'click',() => {
+      console.log("call handler"); this._handlerLike(this)});
   }
 
   likeCard() {
@@ -81,4 +100,3 @@ export class Card {
 
 
 }
-
