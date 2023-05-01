@@ -1,5 +1,5 @@
-import { Card, FormValidator, PopupWithImage, UserInfo, PopupWithForm, Section, PopupWithConfirm, Api } from './classes/index.js';
-import { initialCards } from './const.js';
+import { Card, FormValidator, PopupWithImage, UserInfo, PopupWithForm, Section, PopupWithConfirm, Api } from './components/index.js';
+import { initialCards } from './utills/const.js';
 import './pages/index.css';
 
 const profileImageButton = document.querySelector('.profile__image-overlay');
@@ -33,15 +33,15 @@ const api = new Api({
 );
 
 
-const profileEditFormElement = document.getElementById('profileEditForm');
+const profileEditFormElement = document.querySelector('#profileEditForm');
 const profileEditFormValidator = new FormValidator(formsValidationConfig, profileEditFormElement);
 profileEditFormValidator.enableValidation();
 
-const formCard = document.getElementById('addPlaceForm');
+const formCard = document.querySelector('#addPlaceForm');
 const validationForm = new FormValidator(formsValidationConfig, formCard);
 validationForm.enableValidation();
 
-const formAvatar = document.getElementById('addAvatar');
+const formAvatar = document.querySelector('#addAvatar');
 const validationAvatar = new FormValidator(formsValidationConfig, formAvatar);
 validationAvatar.enableValidation();
 
@@ -57,18 +57,23 @@ const handlerDelete = (card) => {
 const handlerLike = (card) => {
   console.log("in handler")
   if (card.isLike) {
-    api.like(card.cardID, true).then(elem => {
-      card.unLikeCard()
-      card.likesCounterUpdate(elem.likes)
-      console.log("unset like", elem)
-    })
+    api.like(card.cardID, true)
+      .then(elem => {
+        card.unLikeCard()
+        card.likesCounterUpdate(elem.likes)
+        console.log("unset like", elem)
+      })
+      .catch(err => console.log(`Ошибка.....: ${err}`))
+
     console.log("unset like")
   } else {
     console.log('ff');
-    api.like(card.cardID, false).then(elem => {
-      card.likeCard()
-      card.likesCounterUpdate(elem.likes)
-    })
+    api.like(card.cardID, false)
+      .then(elem => {
+        card.likeCard()
+        card.likesCounterUpdate(elem.likes)
+      })
+      .catch(err => console.log(`Ошибка.....: ${err}`))
   }
 }
 
@@ -80,25 +85,15 @@ const generateCard = (data, popup) => {
 }
 
 //ссылка куда отправляется запрос
-var section;
+let section;
 
-api.getCards()
-  .then((result) => {
-    console.log(result);
-    section = new Section({ items: result, renderer: (data) => generateCard(data, cardPopup) }, '.cards');
 
-    section.render();
-  })
-  .catch((err) => {
-    console.log(err); // выведем ошибку в консоль
-  });
 
 
 
 
 
 const handlerProfileEdit = (props) => {
-  userInfo.setUserInfo(props);
   profileEditFormValidator.disableButton();
 
   api.patchProfile({
@@ -106,25 +101,31 @@ const handlerProfileEdit = (props) => {
     about: props.job,
     link: props.link
   })
+    .then((result) => {
+      userInfo.setUserInfo(props);
+      popupEdit.close()
+    })
+    .catch(err => console.log(`Ошибка.....: ${err}`))
 
-  popupEdit.close()
 }
 
 
 
 const handlerAddPost = (props) => {
-  const element = generateCard(props, cardPopup)
-  section.addItem(element);
   validationForm.disableButton();
 
   api.postCard({
     name: props.name,
     link: props.link
   })
+    .then((result) => {
+      const element = generateCard(result, cardPopup)
+      section.addItem(element);
+      popupAddCard.close()
+    })
     .catch((err) => {
       console.log(err); // выведем ошибку в консоль
     });
-  popupAddCard.close()
 }
 
 
@@ -140,21 +141,23 @@ const handlerAddAvatar = (props) => {
     .then(data => {
       console.log(data)
       userInfo.setUserAvatar(data.avatar)
+      popupAddAvatar.close()
     })
     .catch((err) => {
       console.log(err); // выведем ошибку в консоль
     });
-  popupAddAvatar.close()
 }
 
 const handlerConfirm = (props) => {
   console.log(props);
   api.deleteCard(props.cardID)
+    .then((result) => {
+      console.log(result);
+    })
     .catch((err) => {
       console.log(err); // выведем ошибку в консоль
     });
 }
-
 
 
 
@@ -178,7 +181,15 @@ const userInfo = new UserInfo({
 api.getProfile()
   .then((result) => {
     userInfo.setUserInfo({ name: result.name, job: result.about, avatar: result.avatar })
-    console.log(result);
+    api.getCards()
+      .then((result) => {
+        console.log(result);
+        section = new Section({ items: result, renderer: (data) => generateCard(data, cardPopup) }, '.cards');
+        section.render();
+      })
+      .catch((err) => {
+        console.log(err); // выведем ошибку в консоль
+      });
   })
   .catch((err) => {
     console.log(err); // выведем ошибку в консоль
