@@ -1,6 +1,6 @@
-import { Card, FormValidator, PopupWithImage, UserInfo, PopupWithForm, Section, PopupWithConfirm, Api } from './components/index.js';
-import { initialCards } from './utills/const.js';
-import './pages/index.css';
+import { Card, FormValidator, PopupWithImage, UserInfo, PopupWithForm, Section, PopupWithConfirm, Api } from '../components/index.js';
+import { initialCards } from '../utills/const.js';
+import './index.css';
 
 const profileImageButton = document.querySelector('.profile__image-overlay');
 
@@ -93,8 +93,8 @@ let section;
 
 
 
-const handlerProfileEdit = (props) => {
-  profileEditFormValidator.disableButton();
+const handlerProfileEdit = (props, elem) => {
+  // profileEditFormValidator.disableButton();
 
   api.patchProfile({
     name: props.name,
@@ -107,13 +107,15 @@ const handlerProfileEdit = (props) => {
     })
     .catch(err => console.log(`Ошибка.....: ${err}`))
 
+    .finally(() => {
+      elem.textContent = 'Сохранить'
+    })
 }
 
 
 
-const handlerAddPost = (props) => {
-  validationForm.disableButton();
-
+const handlerAddPost = (props, elem) => {
+  // validationForm.disableButton();
   api.postCard({
     name: props.name,
     link: props.link
@@ -125,15 +127,19 @@ const handlerAddPost = (props) => {
     })
     .catch((err) => {
       console.log(err); // выведем ошибку в консоль
-    });
+    })
+
+    .finally(() => {
+      elem.textContent = 'Сохранить'
+    })
 }
 
 
 
 
-const handlerAddAvatar = (props) => {
+const handlerAddAvatar = (props, elem) => {
 
-  validationForm.disableButton();
+  // validationForm.disableButton();
 
   api.setUserAvatar({
     link: props.link
@@ -145,14 +151,19 @@ const handlerAddAvatar = (props) => {
     })
     .catch((err) => {
       console.log(err); // выведем ошибку в консоль
-    });
+    })
+
+    .finally(() => {
+      elem.textContent = 'Сохранить'
+    })
 }
 
 const handlerConfirm = (props) => {
   console.log(props);
   api.deleteCard(props.cardID)
-    .then((result) => {
-      console.log(result);
+    .then(() => {
+      props.card._deleteCard()
+      popupConfirm.close()
     })
     .catch((err) => {
       console.log(err); // выведем ошибку в консоль

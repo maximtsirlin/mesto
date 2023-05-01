@@ -3,7 +3,6 @@ export class Api {
     this._baseUrl = url;
     this._headers = headers;
     fetch(this._baseUrl + "users/me", {headers: this._headers}).then(res=>res.json()).then(result => this._myId = result._id)
-      //fc59253d4d4ea29517d4ad19
   }
 
   _isResultOk(res) {

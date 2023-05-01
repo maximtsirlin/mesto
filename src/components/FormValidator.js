@@ -16,7 +16,6 @@ export class FormValidator {
   };
 
 
-
   #showError(errorElement, message) {
     errorElement.innerText = message;
     errorElement.classList.add(this.validationConfig.inputErrorClass);

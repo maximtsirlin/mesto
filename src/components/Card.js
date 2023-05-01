@@ -12,21 +12,11 @@ export class Card {
     this.islike = false
     console.log(card, this.owner)
     this._likeArray = card.likes?? [];
-    // проверяем, определено ли свойство likes в объекте card с помощью optional chaining
     this._likesCounter = card.likes?.length || 0;
-
     this._element = this.#getElementBySelector(document, this._templateSelector).content.firstElementChild.cloneNode(true);
     this._likes = this.#getElementBySelector(this._element, '.cards__like-counter');
     this._likeButton = this.#getElementBySelector(this._element, '.cards__button');
     this._toggleLikeState()
-    // this.#addCardListeners(
-    //   this.#getElementBySelector(this._element, '.cards__item'),
-    //   this._element,
-    //   this._name,
-    //   this._link
-    // );
-
-
   }
 
   likesCounterUpdate(data) {
@@ -83,7 +73,6 @@ export class Card {
     
     this.#addListener(deleteButton, 'click', () => {
       this._popupDelete(this)
-      // this.#deleteCard(deleteButton);
     });
     
     this.#addListener(this._likeButton, 'click',() => {
@@ -96,7 +85,6 @@ export class Card {
     this.isLike = true;
   }
 
-
   unLikeCard() {
     this._likeButton.classList.remove('cards__button-active');
     this.isLike = false;
@@ -105,6 +93,5 @@ export class Card {
   _deleteCard() {
     this._element.remove();
   }
-
 
 }
